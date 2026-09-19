@@ -200,6 +200,7 @@ tranchelock/
 │   ├── brand-mark.svg           # TrancheLock brand mark (28px header/footer)
 │   └── fonts/                   # Geist Sans, Mono, Pixel (self-hosted)
 │
+├── requirements.txt             # Python verifier and test dependencies
 ├── run_demo.py                  # Standalone Python end-to-end demo
 ├── Anchor.toml                  # Anchor config (Devnet cluster)
 ├── LICENSE                      # MIT License
@@ -216,12 +217,15 @@ tranchelock/
 - **Python** ≥ 3.10
 - **Solana CLI** (for keypair management / airdrop)
 - **Anchor CLI** (for program build/deploy)
-- `pip install pytest nacl base58 solders`
 
 ### Install
 
 ```sh
+# Install Node dependencies
 npm install
+
+# Install Python dependencies for verifier oracle & test suite
+pip install -r requirements.txt
 ```
 
 ### Run Frontend (Dev Server)

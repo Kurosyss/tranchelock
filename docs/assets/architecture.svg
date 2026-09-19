@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
   <defs>
-    <style>
+    <style><![CDATA[
       .bg { fill: #fbfbfa; }
       .outer-frame { stroke: #e3e3df; stroke-width: 1.5; fill: none; }
       .divider { stroke: #ebebeb; stroke-width: 1; stroke-dasharray: 4 4; }
@@ -16,9 +16,9 @@
       .boundary-label { font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace; font-size: 9px; font-weight: 700; fill: #52524e; letter-spacing: 0.18em; }
 
       /* Technical Panels */
-      .plate-card { fill: #ffffff; stroke: #e3e3df; stroke-width: 1; rx: 4px; }
-      .plate-dark { fill: #141412; stroke: #2a2a26; stroke-width: 1; rx: 4px; }
-      .plate-steel { fill: #1c1c1a; stroke: #33332e; stroke-width: 1; rx: 4px; }
+      .plate-card { fill: #ffffff; stroke: #e3e3df; stroke-width: 1; }
+      .plate-dark { fill: #141412; stroke: #2a2a26; stroke-width: 1; }
+      .plate-steel { fill: #1c1c1a; stroke: #33332e; stroke-width: 1; }
       .plate-header { font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace; font-size: 10px; font-weight: 700; fill: #171717; letter-spacing: 0.08em; }
       .plate-header-dark { font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace; font-size: 10px; font-weight: 700; fill: #fbfbfa; letter-spacing: 0.08em; }
       .tag-num { font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace; font-size: 9px; font-weight: 700; fill: #999990; }
@@ -38,13 +38,12 @@
       .emerald-text { fill: #10b981; font-weight: 600; }
       .emerald-stroke { stroke: #10b981; stroke-width: 1.5; fill: none; }
       .emerald-fill { fill: #10b981; }
-      .emerald-badge { fill: rgba(16, 185, 129, 0.12); stroke: #10b981; stroke-width: 1; rx: 3px; }
 
-      /* Connectors & Markers */
+      /* Connectors and Markers */
       .vector-line { stroke: #171717; stroke-width: 1.2; fill: none; }
       .vector-line-dashed { stroke: #787873; stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
       .vector-line-emerald { stroke: #10b981; stroke-width: 1.4; fill: none; }
-    </style>
+    ]]></style>
 
     <marker id="dot-dark" markerWidth="6" markerHeight="6" refX="3" refY="3">
       <circle cx="3" cy="3" r="2" fill="#171717" />
@@ -88,9 +87,9 @@
     <text x="12" y="14" class="boundary-label">01 // OFF-CHAIN VERIFICATION BOUNDARY (HOST-ISOLATED ENVIRONMENT)</text>
     <line x1="600" y1="10" x2="1090" y2="10" class="divider" />
 
-    <!-- BOX 1: SPONSOR DEPOSIT & COMMITMENT (Left) -->
+    <!-- BOX 1: SPONSOR DEPOSIT AND COMMITMENT (Left) -->
     <g transform="translate(0, 30)">
-      <rect width="250" height="194" class="plate-card" />
+      <rect width="250" height="194" rx="4" class="plate-card" />
       <path d="M 0 0 L 250 0 L 250 26 L 0 26 Z" fill="#fafaf8" stroke="#e3e3df" stroke-width="1" />
       <text x="12" y="18" class="plate-header">SPONSOR COMMITMENT</text>
       <text x="220" y="18" class="tag-num">01.A</text>
@@ -109,12 +108,11 @@
 
     <!-- BOX 2: VERIFIER ORACLE PIPELINE (Center) -->
     <g transform="translate(266, 30)">
-      <rect width="474" height="194" class="plate-card" />
+      <rect width="474" height="194" rx="4" class="plate-card" />
       <path d="M 0 0 L 474 0 L 474 26 L 0 26 Z" fill="#fafaf8" stroke="#e3e3df" stroke-width="1" />
       <text x="12" y="18" class="plate-header">VERIFIER ORACLE ENGINE (PYTHON SERVICE)</text>
       <text x="444" y="18" class="tag-num">01.B</text>
 
-      <!-- 4-step pipeline list -->
       <!-- Step 1 -->
       <circle cx="22" cy="48" r="7" fill="#171717" />
       <text x="19.5" y="51.5" font-family="'SF Mono', monospace" font-size="8.5px" fill="#ffffff" font-weight="700">1</text>
@@ -146,7 +144,7 @@
 
     <!-- BOX 3: CANONICAL 153-BYTE PROOF PAYLOAD (Right) -->
     <g transform="translate(756, 30)">
-      <rect width="348" height="194" class="plate-dark" />
+      <rect width="348" height="194" rx="4" class="plate-dark" />
       <path d="M 0 0 L 348 0 L 348 26 L 0 26 Z" fill="#1c1c1a" stroke="#2a2a26" stroke-width="1" />
       <text x="12" y="18" class="plate-header-dark">CANONICAL 153-BYTE PAYLOAD</text>
       <text x="318" y="18" class="tag-num-dark">01.C</text>
@@ -204,7 +202,7 @@
   <!-- ============================================================ -->
   <g transform="translate(48, 334)">
     <line x1="0" y1="18" x2="1104" y2="18" class="divider" />
-    
+
     <!-- Vector badge -->
     <g transform="translate(300, 4)">
       <rect width="504" height="26" fill="#141412" rx="3" />
@@ -226,7 +224,7 @@
 
     <!-- BOX 4: SOLANA PROGRAM INTROSPECTION (Left/Center) -->
     <g transform="translate(0, 30)">
-      <rect width="670" height="216" class="plate-card" />
+      <rect width="670" height="216" rx="4" class="plate-card" />
       <path d="M 0 0 L 670 0 L 670 26 L 0 26 Z" fill="#fafaf8" stroke="#e3e3df" stroke-width="1" />
       <text x="12" y="18" class="plate-header">SOLANA PROGRAM INSTRUCTION INTROSPECTION (ANCHOR / RUST)</text>
       <text x="636" y="18" class="tag-num">02.A</text>
@@ -260,9 +258,9 @@
       </g>
     </g>
 
-    <!-- BOX 5: TRANCHE VAULT APPARATUS & DISBURSEMENT (Right) -->
+    <!-- BOX 5: TRANCHE VAULT APPARATUS &amp; DISBURSEMENT (Right) -->
     <g transform="translate(686, 30)">
-      <rect width="418" height="216" class="plate-dark" />
+      <rect width="418" height="216" rx="4" class="plate-dark" />
       <path d="M 0 0 L 418 0 L 418 26 L 0 26 Z" fill="#1c1c1a" stroke="#2a2a26" stroke-width="1" />
       <text x="12" y="18" class="plate-header-dark">TRANCHE DISBURSEMENT REGISTER</text>
       <text x="388" y="18" class="tag-num-dark">02.B</text>
@@ -272,7 +270,7 @@
         <rect x="0" y="0" width="390" height="42" fill="#1c1c1a" stroke="#10b981" stroke-width="1.2" rx="3" />
         <text x="12" y="18" class="mono-code-dark" font-size="11px">TRANCHE 0: $50.00 TLUSD</text>
         <text x="12" y="32" class="mono-sub-dark" font-size="9px">Milestone 0: Verified &amp; Settled via Ed25519</text>
-        <rect x="294" y="10" width="84" height="20" class="emerald-badge" />
+        <rect x="294" y="10" width="84" height="20" fill="#10b981" fill-opacity="0.12" stroke="#10b981" stroke-width="1" rx="3" />
         <text x="306" y="24" class="mono-code" font-size="9px" fill="#10b981">RELEASED</text>
 
         <!-- Tranche 1 (Locked) -->
