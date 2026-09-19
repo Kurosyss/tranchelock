@@ -1,5 +1,11 @@
 <p align="center">
-  <img src="./docs/assets/banner.svg" alt="TrancheLock Banner" width="100%" />
+  <img src="./docs/assets/banner.svg" alt="TrancheLock Protocol Banner" width="100%" />
+</p>
+
+<p align="center">
+  <a href="https://explorer.solana.com/address/3SBmcsZqGHbLzxrBR2ZzrfSnufHFpzM6GHY6TiijebtM?cluster=devnet"><img src="https://img.shields.io/badge/Solana-Devnet-171717?style=flat&logo=solana&logoColor=white" alt="Solana Devnet" /></a>
+  <a href="./tests/test_all_security_invariants.py"><img src="https://img.shields.io/badge/Security_Invariants-22%2F22_Passing-171717?style=flat" alt="22/22 Security Invariants" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-171717?style=flat" alt="MIT License" /></a>
 </p>
 
 # TrancheLock
@@ -54,38 +60,6 @@ Final state: **Agent balance: 100 TLUSD. Vault balance: 0 TLUSD.**
 <p align="center">
   <img src="./docs/assets/architecture.svg" alt="TrancheLock Protocol Architecture" width="100%" />
 </p>
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  SPONSOR                                                        │
-│  Locks $100 TLUSD → initialize_vault (Solana Devnet)           │
-└────────────────────┬────────────────────────────────────────────┘
-                     │ PDA escrow holds funds
-                     ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  VERIFIER ORACLE  (Python / off-chain)                         │
-│  1. SHA-256 check: private test suite hash == onchain commit   │
-│  2. Sandboxed subprocess: pytest runs agent code               │
-│  3. Gemini AI: criteria mapping and audit reasoning            │
-│  4. Ed25519 sign: canonical 153-byte payload (if pass)         │
-└────────────────────┬────────────────────────────────────────────┘
-                     │ signed instruction data
-                     ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  SOLANA PROGRAM  (Anchor / Rust)                               │
-│  Transaction must contain:                                     │
-│  [ix 0] Ed25519Program(pubkey, message, signature)             │
-│  [ix 1] release_tranche(milestone_idx, submission_hash, nonce) │
-│                                                                 │
-│  Program verifies:                                             │
-│  - Preceding ix is Ed25519 precompile (introspection sysvar)   │
-│  - Oracle pubkey matches vault.verifier_oracle                 │
-│  - Message == canonical 153-byte payload reconstructed onchain │
-│  - milestone_idx == current_tranche (sequential enforcement)   │
-│  - nonce not previously used (replay protection via sequence)  │
-│  → Transfer tranche_amount from vault PDA → agent ATA          │
-└─────────────────────────────────────────────────────────────────┘
-```
 
 ### Canonical 153-Byte Proof Payload
 
@@ -171,7 +145,7 @@ The security test suite (`tests/test_all_security_invariants.py`) covers 22 adve
 tranchelock/
 ├── programs/tranchelock/src/    # Solana program (Anchor / Rust)
 │   ├── lib.rs                   # Program entry — 3 instructions
-│   ├── state.rs                 # TrancheVault account (153-byte PDA state)
+│   ├── state.rs                 # TrancheVault account (312-byte PDA layout)
 │   ├── errors.rs                # 22 typed error codes
 │   ├── ed25519.rs               # Instruction introspection verifier
 │   └── instructions/
@@ -228,7 +202,7 @@ tranchelock/
 │
 ├── run_demo.py                  # Standalone Python end-to-end demo
 ├── Anchor.toml                  # Anchor config (Devnet cluster)
-├── AGENTS.md                    # Frontend design system specification
+├── LICENSE                      # MIT License
 └── package.json                 # npm scripts
 ```
 
@@ -334,12 +308,6 @@ TrancheLock uses **TLUSD (TrancheUSD)** — a Devnet-only test SPL token with 6 
 
 ---
 
-## Design System
-
-The frontend follows the **Geist design system** (`AGENTS.md`): near-white `#fafafa` canvas, near-black `#171717` ink, 1px `#ebebeb` hairline borders, Geist Sans/Mono/Pixel typography, and a hero mesh gradient as the sole color expression. No dark mode, no neon borders, no generic card grids.
-
----
-
 ## Honest Status
 
 | Claim | Accurate Status |
@@ -369,4 +337,4 @@ TrancheLock was built for the **Colosseum Crypto World's Fair** hackathon as a p
 
 ## License
 
-MIT
+This project is licensed under the [MIT License](./LICENSE).

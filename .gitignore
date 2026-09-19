@@ -48,8 +48,12 @@ venv/
 .DS_Store
 Thumbs.db
 
-# ── Editors ───────────────────────────────────────────────────────────────────
+# ── Editors & IDE ─────────────────────────────────────────────────────────────
 .idea/
-.vscode/settings.json
+.vscode/
 *.swp
 *.swo
+
+# ── Internal Agent / Workspace Configs ────────────────────────────────────────
+AGENTS.md
+CLAUDE.md
