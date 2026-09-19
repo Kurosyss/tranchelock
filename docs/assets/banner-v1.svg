@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360">
+  <defs>
+    <style>
+      .bg { fill: #fafafa; }
+      .border { stroke: #ebebeb; stroke-width: 1.5; fill: none; }
+      .grid-line { stroke: #f0f0f0; stroke-width: 1; stroke-dasharray: 4 4; }
+      .kicker { font-family: "Geist Mono", "SF Mono", Menlo, Consolas, monospace; font-size: 11px; font-weight: 600; fill: #8f8f8f; letter-spacing: 0.08em; }
+      .title { font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-size: 50px; font-weight: 700; fill: #171717; letter-spacing: -0.045em; }
+      .subtitle { font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-size: 19px; font-weight: 400; fill: #4d4d4d; letter-spacing: -0.015em; }
+      .caption { font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-size: 13px; font-weight: 400; fill: #8f8f8f; }
+      .meta-card { fill: #ffffff; stroke: #ebebeb; stroke-width: 1; rx: 8px; }
+      .meta-label { font-family: "Geist Mono", "SF Mono", Menlo, Consolas, monospace; font-size: 10px; font-weight: 500; fill: #8f8f8f; letter-spacing: 0.06em; }
+      .meta-val { font-family: "Geist Mono", "SF Mono", Menlo, Consolas, monospace; font-size: 12px; font-weight: 600; fill: #171717; }
+      .meta-val-green { font-family: "Geist Mono", "SF Mono", Menlo, Consolas, monospace; font-size: 12px; font-weight: 600; fill: #10b981; }
+      .divider { stroke: #ebebeb; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="360" class="bg" />
+
+  <!-- Subtle Architectural Grid Accents -->
+  <line x1="780" y1="20" x2="780" y2="340" class="grid-line" />
+  <line x1="40" y1="280" x2="1160" y2="280" class="grid-line" />
+
+  <!-- Outer Frame -->
+  <rect x="16" y="16" width="1168" height="328" rx="10" class="border" />
+
+  <!-- Left Editorial Column -->
+  <g transform="translate(64, 60)">
+    <!-- Kicker -->
+    <text x="0" y="0" class="kicker">COLOSSEUM 2026 // SOLANA PROTOCOL SPECIFICATION</text>
+
+    <!-- Header Lockup: Brand Mark + Title -->
+    <g transform="translate(0, 20)">
+      <!-- TrancheLock Brand Mark (Squircle 48px) -->
+      <rect x="0" y="4" width="48" height="48" rx="11" fill="#0f0f0f" />
+      <rect x="9" y="13" width="30" height="30" rx="5" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linejoin="round" />
+      <line x1="9" y1="23" x2="39" y2="23" stroke="#ffffff" stroke-width="3.5" stroke-linecap="square" />
+      <polyline points="12,26 24,34 36,26" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+
+      <!-- Title -->
+      <text x="64" y="44" class="title">TRANCHELOCK</text>
+    </g>
+
+    <!-- Subtitle -->
+    <text x="0" y="112" class="subtitle">Milestone-Gated Capital Release for Autonomous AI Agents</text>
+
+    <!-- Technical Caption -->
+    <text x="0" y="142" class="caption">Programmatic escrow enforcement on Solana via Ed25519 instruction introspection.</text>
+    <text x="0" y="162" class="caption">Funds release only when private test suites and sponsor invariants evaluate truth.</text>
+  </g>
+
+  <!-- Right Technical Spec Panel (Metadata Card) -->
+  <g transform="translate(808, 48)">
+    <rect width="328" height="264" class="meta-card" />
+
+    <!-- Spec Header -->
+    <g transform="translate(24, 30)">
+      <text x="0" y="0" class="meta-label">DEPLOYMENT TELEMETRY</text>
+      <circle cx="270" cy="-4" r="4" fill="#10b981" />
+    </g>
+    <line x1="24" y1="44" x2="304" y2="44" class="divider" />
+
+    <!-- Item 1: Settlement Layer -->
+    <g transform="translate(24, 72)">
+      <text x="0" y="0" class="meta-label">SETTLEMENT LAYER</text>
+      <text x="0" y="18" class="meta-val">Solana Devnet (v1.18)</text>
+    </g>
+
+    <!-- Item 2: Program ID -->
+    <g transform="translate(24, 118)">
+      <text x="0" y="0" class="meta-label">ANCHOR PROGRAM ID</text>
+      <text x="0" y="18" class="meta-val">3SBmcsZq...TiijebtM</text>
+    </g>
+
+    <!-- Item 3: Test Capital Token -->
+    <g transform="translate(24, 164)">
+      <text x="0" y="0" class="meta-label">TEST CAPITAL TOKEN</text>
+      <text x="0" y="18" class="meta-val">TLUSD (SPL Test Mint)</text>
+    </g>
+
+    <!-- Item 4: Verification Status -->
+    <g transform="translate(24, 210)">
+      <text x="0" y="0" class="meta-label">FORMAL INVARIANTS</text>
+      <text x="0" y="18" class="meta-val-green">22/22 Tests Passing</text>
+    </g>
+  </g>
+
+  <!-- Footer Micro-Metadata -->
+  <g transform="translate(64, 314)">
+    <text x="0" y="0" class="meta-label">PRIMITIVE: 153-BYTE ED25519 CANONICAL ATTESTATION</text>
+    <text x="380" y="0" class="meta-label">·</text>
+    <text x="400" y="0" class="meta-label">ORACLE: E2B / DOCKER TEST RUNNER</text>
+  </g>
+</svg>

@@ -106,6 +106,30 @@ The payload is constructed identically by the Python oracle and the Rust program
 
 ---
 
+## Product Interface
+
+### Protocol Overview
+<p align="center">
+  <img src="./docs/assets/screenshots/home.png" alt="TrancheLock Protocol Overview" width="100%" />
+</p>
+
+### Live Devnet Vault Registry
+<p align="center">
+  <img src="./docs/assets/screenshots/vault-registry.png" alt="Live Devnet Vault Registry" width="100%" />
+</p>
+
+### Verification Proof Inspector
+<p align="center">
+  <img src="./docs/assets/screenshots/verification.png" alt="Canonical Verification Proof Inspector" width="100%" />
+</p>
+
+### Security & Invariant Audit
+<p align="center">
+  <img src="./docs/assets/screenshots/security.png" alt="Security Invariant Test Suite" width="100%" />
+</p>
+
+---
+
 ## Security: 22 Adversarial Invariants
 
 The security test suite (`tests/test_all_security_invariants.py`) covers 22 adversarial invariants across cryptographic integrity, instruction introspection, state sequencing, replay protection, and timelock enforcement.

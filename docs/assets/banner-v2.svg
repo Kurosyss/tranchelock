@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360">
+  <defs>
+    <style>
+      .bg { fill: #fafafa; }
+      .border { stroke: #ebebeb; stroke-width: 1.5; fill: none; }
+      .top-title { font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 28px; font-weight: 700; fill: #171717; letter-spacing: -0.04em; }
+      .top-sub { font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; font-weight: 400; fill: #4d4d4d; }
+      .stage-card { fill: #ffffff; stroke: #ebebeb; stroke-width: 1; rx: 8px; }
+      .stage-num { font-family: "Geist Mono", "SF Mono", Menlo, monospace; font-size: 11px; font-weight: 700; fill: #8f8f8f; letter-spacing: 0.05em; }
+      .stage-title { font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 16px; font-weight: 600; fill: #171717; letter-spacing: -0.02em; }
+      .stage-desc { font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 400; fill: #4d4d4d; }
+      .stage-spec { font-family: "Geist Mono", "SF Mono", Menlo, monospace; font-size: 11px; font-weight: 500; fill: #171717; }
+      .stage-tag { fill: #f5f5f5; stroke: #e5e5e5; stroke-width: 1; rx: 4px; }
+      .arrow-line { stroke: #8f8f8f; stroke-width: 1.5; stroke-dasharray: 4 3; }
+      .arrow-head { fill: #8f8f8f; }
+      .flow-label { font-family: "Geist Mono", "SF Mono", Menlo, monospace; font-size: 10px; font-weight: 600; fill: #0070f3; letter-spacing: 0.02em; }
+      .badge-bg { fill: #ffffff; stroke: #ebebeb; stroke-width: 1; rx: 6px; }
+      .badge-text { font-family: "Geist Mono", "SF Mono", Menlo, monospace; font-size: 11px; font-weight: 600; fill: #171717; }
+      .bottom-note { font-family: "Geist Mono", "SF Mono", Menlo, monospace; font-size: 11px; font-weight: 500; fill: #8f8f8f; }
+    </style>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="360" class="bg" />
+
+  <!-- Outer Hairline Frame -->
+  <rect x="16" y="16" width="1168" height="328" rx="10" class="border" />
+
+  <!-- Top Header Bar -->
+  <g transform="translate(48, 42)">
+    <!-- Brand Mark (Squircle 36px) -->
+    <rect x="0" y="0" width="36" height="36" rx="8" fill="#0f0f0f" />
+    <rect x="7" y="7" width="22" height="22" rx="4" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round" />
+    <line x1="7" y1="14" x2="29" y2="14" stroke="#ffffff" stroke-width="2.5" stroke-linecap="square" />
+    <polyline points="9,17 18,23 27,17" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Wordmark & Subtitle -->
+    <text x="48" y="24" class="top-title">TRANCHELOCK</text>
+    <text x="252" y="24" class="top-sub">Mechanism Flow: Verified Work → Cryptographic Proof → Solana Settlement</text>
+
+    <!-- Devnet Status Badge (Right) -->
+    <g transform="translate(936, 4)">
+      <rect width="136" height="28" class="badge-bg" />
+      <circle cx="14" cy="14" r="3.5" fill="#10b981" />
+      <text x="26" y="18" class="badge-text">SOLANA DEVNET</text>
+    </g>
+  </g>
+
+  <!-- Flow Primitive Mechanism (3 Cards + Connectors) -->
+  <g transform="translate(48, 104)">
+    <!-- Stage 1: VERIFIED WORK -->
+    <g transform="translate(0, 0)">
+      <rect width="320" height="170" class="stage-card" />
+      <g transform="translate(20, 26)">
+        <text x="0" y="0" class="stage-num">01 / INPUT</text>
+        <text x="0" y="24" class="stage-title">Verified Agent Work</text>
+        <text x="0" y="48" class="stage-desc">Agent submits milestone artifact.</text>
+        <text x="0" y="68" class="stage-desc">Executed against private test suite.</text>
+        
+        <!-- Metadata Tag -->
+        <g transform="translate(0, 92)">
+          <rect width="280" height="26" class="stage-tag" />
+          <text x="10" y="17" class="stage-spec">SHA-256(suite) == spec_hash</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Connector 1: Work to Proof -->
+    <g transform="translate(320, 75)">
+      <line x1="12" y1="10" x2="64" y2="10" class="arrow-line" />
+      <polygon points="64,6 74,10 64,14" class="arrow-head" />
+      <text x="6" y="-6" class="flow-label">PASSES</text>
+    </g>
+
+    <!-- Stage 2: CRYPTOGRAPHIC PROOF -->
+    <g transform="translate(394, 0)">
+      <rect width="320" height="170" class="stage-card" />
+      <g transform="translate(20, 26)">
+        <text x="0" y="0" class="stage-num">02 / ATTESTATION</text>
+        <text x="0" y="24" class="stage-title">153-Byte Ed25519 Proof</text>
+        <text x="0" y="48" class="stage-desc">Oracle signs canonical message:</text>
+        <text x="0" y="68" class="stage-desc">[vault || tranche || amount || spec_hash]</text>
+        
+        <!-- Metadata Tag -->
+        <g transform="translate(0, 92)">
+          <rect width="280" height="26" class="stage-tag" />
+          <text x="10" y="17" class="stage-spec">Ix 0: Ed25519 Native Program</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Connector 2: Proof to Settlement -->
+    <g transform="translate(714, 75)">
+      <line x1="12" y1="10" x2="64" y2="10" class="arrow-line" />
+      <polygon points="64,6 74,10 64,14" class="arrow-head" />
+      <text x="4" y="-6" class="flow-label">VERIFIED</text>
+    </g>
+
+    <!-- Stage 3: PROGRAMMATIC SETTLEMENT -->
+    <g transform="translate(788, 0)">
+      <rect width="320" height="170" class="stage-card" />
+      <g transform="translate(20, 26)">
+        <text x="0" y="0" class="stage-num">03 / SETTLEMENT</text>
+        <text x="0" y="24" class="stage-title">Tranche Capital Release</text>
+        <text x="0" y="48" class="stage-desc">Instruction introspection verifies Ix 0.</text>
+        <text x="0" y="68" class="stage-desc">Vault PDA releases capital to recipient.</text>
+        
+        <!-- Metadata Tag -->
+        <g transform="translate(0, 92)">
+          <rect width="280" height="26" class="stage-tag" />
+          <text x="10" y="17" class="stage-spec">Ix 1: release_tranche (Solana)</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom Technical Guarantees -->
+  <g transform="translate(48, 314)">
+    <text x="0" y="0" class="bottom-note">SECURITY GUARANTEES:</text>
+    <text x="148" y="0" class="bottom-note">1. Non-Custodial Vault PDAs</text>
+    <text x="360" y="0" class="bottom-note">2. Zero-Replay Tranche Indexing</text>
+    <text x="610" y="0" class="bottom-note">3. Timelocked Sponsor Clawback</text>
+    <text x="850" y="0" class="bottom-note">4. 22 Invariant Tests Passing</text>
+  </g>
+</svg>
