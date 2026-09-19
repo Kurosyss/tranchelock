@@ -1,0 +1,55 @@
+# ── Build outputs ─────────────────────────────────────────────────────────────
+dist/
+.astro/
+
+# ── Dependencies ───────────────────────────────────────────────────────────────
+node_modules/
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── Environment / Secrets ─────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Solana / Anchor build artifacts ───────────────────────────────────────────
+target/*
+!target/idl/
+target/idl/*
+!target/idl/tranchelock.json
+programs/tranchelock/target/
+*.so
+
+# Keypairs & private keys — NEVER commit
+target/deploy/
+*.keypair.json
+**/*.keypair.json
+*keypair*.json
+id.json
+**/id.json
+*.key
+*.pem
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+**/.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Editors ───────────────────────────────────────────────────────────────────
+.idea/
+.vscode/settings.json
+*.swp
+*.swo

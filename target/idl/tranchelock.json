@@ -1,0 +1,106 @@
+{
+  "address": "3SBmcsZqGHbLzxrBR2ZzrfSnufHFpzM6GHY6TiijebtM",
+  "version": "0.1.0",
+  "name": "tranchelock",
+  "instructions": [
+    {
+      "name": "initializeVault",
+      "discriminator": [48, 191, 163, 44, 71, 129, 63, 164],
+      "accounts": [
+        { "name": "vault", "writable": true, "signer": false },
+        { "name": "vaultTokenAccount", "writable": true, "signer": false },
+        { "name": "sponsor", "writable": true, "signer": true },
+        { "name": "agent", "writable": false, "signer": false },
+        { "name": "verifierOracle", "writable": false, "signer": false },
+        { "name": "tokenMint", "writable": false, "signer": false },
+        { "name": "sponsorTokenAccount", "writable": true, "signer": false },
+        { "name": "tokenProgram", "writable": false, "signer": false },
+        { "name": "systemProgram", "writable": false, "signer": false },
+        { "name": "rent", "writable": false, "signer": false }
+      ],
+      "args": [
+        { "name": "amounts", "type": { "vec": "u64" } },
+        { "name": "milestoneSpecHashes", "type": { "vec": { "array": ["u8", 32] } } },
+        { "name": "expiresAt", "type": "i64" }
+      ]
+    },
+    {
+      "name": "releaseTranche",
+      "discriminator": [156, 137, 159, 5, 80, 38, 133, 227],
+      "accounts": [
+        { "name": "vault", "writable": true, "signer": false },
+        { "name": "vaultTokenAccount", "writable": true, "signer": false },
+        { "name": "agent", "writable": false, "signer": true },
+        { "name": "agentTokenAccount", "writable": true, "signer": false },
+        { "name": "instructionsSysvar", "writable": false, "signer": false },
+        { "name": "tokenProgram", "writable": false, "signer": false }
+      ],
+      "args": [
+        { "name": "milestoneIdx", "type": "u8" },
+        { "name": "submissionHash", "type": { "array": ["u8", 32] } },
+        { "name": "nonce", "type": "u64" }
+      ]
+    },
+    {
+      "name": "clawback",
+      "discriminator": [111, 92, 142, 79, 33, 234, 82, 27],
+      "accounts": [
+        { "name": "vault", "writable": true, "signer": false },
+        { "name": "vaultTokenAccount", "writable": true, "signer": false },
+        { "name": "sponsor", "writable": true, "signer": true },
+        { "name": "sponsorTokenAccount", "writable": true, "signer": false },
+        { "name": "tokenProgram", "writable": false, "signer": false }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "TrancheVault",
+      "discriminator": [185, 186, 114, 210, 98, 164, 243, 110]
+    }
+  ],
+  "types": [
+    {
+      "name": "TrancheVault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "sponsor", "type": "pubkey" },
+          { "name": "agent", "type": "pubkey" },
+          { "name": "verifierOracle", "type": "pubkey" },
+          { "name": "tokenMint", "type": "pubkey" },
+          { "name": "milestoneSpecHashes", "type": { "array": [{ "array": ["u8", 32] }, 4] } },
+          { "name": "totalTranches", "type": "u8" },
+          { "name": "currentTranche", "type": "u8" },
+          { "name": "trancheAmounts", "type": { "array": ["u64", 4] } },
+          { "name": "trancheStatus", "type": { "array": ["u8", 4] } },
+          { "name": "expiresAt", "type": "i64" },
+          { "name": "bump", "type": "u8" },
+          { "name": "vaultBump", "type": "u8" }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    { "code": 6000, "name": "InvalidSysvar", "msg": "Invalid sysvar account provided" },
+    { "code": 6001, "name": "MissingEd25519Instruction", "msg": "Instruction must be preceded by an Ed25519Program instruction" },
+    { "code": 6002, "name": "InvalidEd25519ProgramId", "msg": "Preceding instruction is not from Ed25519Program" },
+    { "code": 6003, "name": "InvalidEd25519InstructionData", "msg": "Ed25519 instruction data is corrupted or invalid" },
+    { "code": 6004, "name": "MultipleSignaturesNotAllowed", "msg": "Only single-signature Ed25519 verification allowed" },
+    { "code": 6005, "name": "InvalidInstructionIndexOffset", "msg": "Instruction offsets must reference the current instruction" },
+    { "code": 6006, "name": "WrongMessageLength", "msg": "Verified message length does not match canonical payload size (153 bytes)" },
+    { "code": 6007, "name": "WrongOraclePublicKey", "msg": "Verified message was not signed by authorized verifier oracle" },
+    { "code": 6008, "name": "InvalidMessageBytes", "msg": "Verified message bytes do not match expected canonical payload" },
+    { "code": 6009, "name": "VaultExpired", "msg": "Vault timelock has expired" },
+    { "code": 6010, "name": "VaultAlreadyCompleted", "msg": "All tranches in this vault have already been released" },
+    { "code": 6011, "name": "MilestoneMismatch", "msg": "Milestone index does not match expected next tranche" },
+    { "code": 6012, "name": "TrancheAlreadyProcessed", "msg": "Tranche has already been processed" },
+    { "code": 6013, "name": "ExpirationInPast", "msg": "Vault expiration timestamp must be in the future" },
+    { "code": 6014, "name": "InvalidTrancheCount", "msg": "Vault must configure between 1 and 4 tranches" },
+    { "code": 6015, "name": "AmountsLengthMismatch", "msg": "Tranche amounts count does not match milestone spec hashes count" },
+    { "code": 6016, "name": "VaultNotExpired", "msg": "Cannot clawback funds before vault expires" },
+    { "code": 6017, "name": "NoFundsToClawback", "msg": "No unreleased funds remain to clawback" },
+    { "code": 6018, "name": "AgentMismatch", "msg": "Agent account does not match vault.agent" }
+  ]
+}

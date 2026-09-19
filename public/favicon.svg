@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Dark Badge (Squircle) -->
+  <rect x="32" y="32" width="448" height="448" rx="96" fill="#0f0f0f" />
+  
+  <!-- TrancheLock Sovereign Mark -->
+  <!-- Outer Rounded Squircle Frame -->
+  <rect x="96" y="96" width="320" height="320" rx="54" fill="none" stroke="#ffffff" stroke-width="36" stroke-linejoin="round" />
+  
+  <!-- Horizontal Vault Rail / Crossbar -->
+  <line x1="96" y1="196" x2="416" y2="196" stroke="#ffffff" stroke-width="36" stroke-linecap="square" />
+  
+  <!-- Downward Lock Chevron / Center Wedge -->
+  <polyline points="130,232 256,312 382,232" fill="none" stroke="#ffffff" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

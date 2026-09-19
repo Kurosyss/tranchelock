@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="404: Escrow Route Unresolved // TrancheLock" description="The requested vault or protocol route could not be resolved.">
+  <Header />
+
+  <main class="flex-1 flex items-center justify-center py-16 sm:py-24">
+    <div class="w-full max-w-[640px] mx-auto px-4 sm:px-6">
+      
+      <!-- Protocol State Card -->
+      <div class="bg-white border border-[#ebebeb] rounded-[12px] p-6 sm:p-8 shadow-whisper flex flex-col gap-6">
+        
+        <!-- Header Bar / Status -->
+        <div class="flex items-center justify-between border-b border-[#ebebeb] pb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#ef4444] animate-pulse"></span>
+            <span class="type-mono-eyebrow text-[#ef4444]">ESCROW ROUTE UNRESOLVED</span>
+          </div>
+          <span class="font-mono text-xs text-[#8f8f8f] bg-[#f2f2f2] px-2 py-0.5 rounded border border-[#ebebeb]">
+            ROUTE STATE // 404
+          </span>
+        </div>
+
+        <!-- Headline & Description -->
+        <div class="flex flex-col gap-2">
+          <h1 class="type-heading-lg text-[#171717]">
+            Vault Not Found
+          </h1>
+          <p class="type-body-md text-[#666666]">
+            The requested vault or protocol route could not be resolved on the current ledger.
+          </p>
+        </div>
+
+        <!-- Technical Telemetry Box -->
+        <div class="code-block-surface p-4 text-xs font-mono flex flex-col gap-2">
+          <div class="flex items-center justify-between text-[#8f8f8f] text-[11px] border-b border-[#ebebeb] pb-2">
+            <span>DIAGNOSTIC TELEMETRY</span>
+            <span>STATUS: ERR_UNRESOLVED_ACCOUNT</span>
+          </div>
+          <div class="flex flex-col gap-1 pt-1 text-[#171717]">
+            <div class="flex items-center gap-2">
+              <span class="text-[#8f8f8f]">Requested Path:</span>
+              <span id="unresolved-path" class="text-[#ef4444] font-semibold break-all">/vault/</span>
+            </div>
+            <div class="flex items-center gap-2 text-[11px] text-[#8f8f8f]">
+              <span>Resolution Target:</span>
+              <span>PDA Vault Account / Verification Proof Specimen</span>
+            </div>
+            <div class="flex items-center gap-2 text-[11px] text-[#8f8f8f]">
+              <span>Cluster Network:</span>
+              <span class="text-[#10b981]">Solana Devnet (Confirmed)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+          <a href="/app" class="w-full sm:w-auto btn-square-primary text-center">
+            Open Vault Registry &rarr;
+          </a>
+          <a href="/" class="w-full sm:w-auto btn-square-secondary text-center">
+            Back to Overview
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Helper Notice -->
+      <div class="text-center pt-6">
+        <p class="text-[11px] font-mono text-[#8f8f8f]">
+          Looking for verified onchain escrows? Visit the <a href="/app" class="text-[#171717] underline hover:text-[#10b981]">Vault Registry</a> or explore our <a href="/demo" class="text-[#171717] underline hover:text-[#10b981]">90s Lifecycle Demo</a>.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  if (typeof window !== 'undefined') {
+    const pathElem = document.getElementById('unresolved-path');
+    if (pathElem && window.location.pathname) {
+      pathElem.textContent = window.location.pathname;
+    }
+  }
+</script>

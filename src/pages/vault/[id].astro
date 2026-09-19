@@ -1,0 +1,249 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
+import CopyButton from '../../components/ui/CopyButton.astro';
+import { KNOWN_DEVNET_VAULTS } from '../../data/solana';
+
+export function getStaticPaths() {
+  return KNOWN_DEVNET_VAULTS.map((vault) => ({
+    params: { id: vault.id },
+    props: { vault },
+  }));
+}
+
+const { vault } = Astro.props;
+---
+
+<Layout title={`Vault Instrument // ${vault.id.slice(0, 8)}`}>
+  <Header />
+
+  <main class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-12 flex flex-col gap-10">
+    <!-- Breadcrumb & Network State Indicator -->
+    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#ebebeb] pb-4 text-xs">
+      <div class="flex items-center gap-2 font-sans text-xs">
+        <a href="/" class="text-[#8f8f8f] hover:text-[#171717] transition-colors">TRANCHELOCK</a>
+        <span class="text-[#ebebeb]">/</span>
+        <a href="/app" class="text-[#8f8f8f] hover:text-[#171717] transition-colors">VAULTS</a>
+        <span class="text-[#ebebeb]">/</span>
+        <span class="font-mono text-[#171717] font-medium">{vault.id.slice(0, 8)}...{vault.id.slice(-6)}</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span id="live-rpc-badge" class="type-mono-eyebrow text-[#10b981] hidden sm:inline">DEVNET LIVE</span>
+        <Badge variant={vault.badgeVariant} size="xs" dot={true}>
+          {vault.status}
+        </Badge>
+        <a 
+          href={`https://explorer.solana.com/address/${vault.id}?cluster=devnet`} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="font-sans text-xs text-[#0070f3] hover:underline flex items-center gap-1"
+        >
+          <span>Solana Explorer &rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         THE VAULT IS THE FINANCIAL INSTRUMENT ANCHOR
+         High-contrast financial typography, no random card clutter.
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <section class="bg-white border border-[#ebebeb] rounded-[12px] p-8 sm:p-12 shadow-whisper flex flex-col gap-10">
+      
+      <!-- Top Title + Huge Numerical Hero -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-[#ebebeb] pb-8">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-2 text-xs text-[#8f8f8f] font-sans">
+            <span class="type-mono-eyebrow text-[#171717]">ESCROW ACCOUNT PDA</span>
+            <span class="text-[#ebebeb]">•</span>
+            <span class="font-mono text-xs text-[#171717] truncate max-w-sm">{vault.id}</span>
+          </div>
+          
+          <div class="text-xs font-sans font-medium text-[#8f8f8f] uppercase tracking-wider pt-2">Committed Capital</div>
+          <div class="type-display-xl text-5xl sm:text-6xl text-[#171717]">
+            {vault.totalAmount} <span class="text-2xl font-normal text-[#8f8f8f]">{vault.mintSymbol}</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2 lg:items-end text-xs font-sans">
+          <div class="flex items-center gap-2">
+            <span class="text-[#8f8f8f]">Locked in Vault:</span>
+            <span class="font-mono text-sm font-semibold text-[#171717]">{vault.lockedPct} ({vault.remainingAmount})</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[#8f8f8f]">Settled to Agent:</span>
+            <span class="font-mono text-sm font-semibold text-[#10b981]">{vault.releasedPct} ({vault.releasedAmount})</span>
+          </div>
+          <div class="pt-1">
+            <span class="text-[11px] font-sans text-[#8f8f8f] bg-[#f2f2f2] px-2 py-0.5 rounded border border-[#ebebeb]">
+              Mint: <span class="font-mono text-[#171717]">{vault.mintSymbol}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Milestone Contractual Schedule (Clean Rows, Not Cards) -->
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <span class="type-mono-eyebrow text-[#171717]">CONTRACTUAL TRANCHE SCHEDULE</span>
+          <span class="text-xs font-sans text-[#8f8f8f]">{vault.currentTranche} of {vault.totalTranches} milestones released</span>
+        </div>
+
+        <div class="border border-[#ebebeb] rounded-[8px] divide-y divide-[#ebebeb] overflow-hidden">
+          {vault.milestones.map((m) => (
+            <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-[#fafafa] transition-colors">
+              <div class="flex items-start gap-4">
+                <span class="pixel-square text-xs text-[#8f8f8f] mt-0.5">0{m.index + 1}</span>
+                <div class="flex flex-col gap-0.5">
+                  <div class="flex items-center gap-2">
+                    <span class="text-sm font-semibold text-[#171717] font-sans">{m.title}</span>
+                    <Badge variant={m.badgeVariant} size="xs" dot={true}>
+                      {m.status}
+                    </Badge>
+                  </div>
+                  <span class="text-xs font-sans text-[#8f8f8f] truncate max-w-md">Spec Hash: <span class="font-mono text-[#171717]">{m.specHash.slice(0, 16)}...</span></span>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-4 sm:self-center">
+                <span class="pixel-circle text-sm font-semibold text-[#10b981] bg-[#10b981]/10 px-2.5 py-1 rounded border border-[#10b981]/20">
+                  {m.amount} {vault.mintSymbol}
+                </span>
+
+                {m.txSignature && (
+                  <a 
+                    href={`https://explorer.solana.com/tx/${m.txSignature}?cluster=devnet`} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-mono text-xs text-[#0070f3] hover:underline flex items-center gap-1"
+                    title={m.txSignature}
+                  >
+                    <span>Tx: {m.txSignature.slice(0, 6)}...</span>
+                    <span>&rarr;</span>
+                  </a>
+                )}
+
+                {m.proofId && (
+                  <a 
+                    href={`/verify/${m.proofId}`} 
+                    class="btn-square-ghost font-sans text-xs"
+                  >
+                    Inspect Proof &rarr;
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         SUBORDINATE TECHNICAL IDENTITY METADATA
+         Kept genuinely secondary in a quiet hairline panel.
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <section class="bg-white border border-[#ebebeb] rounded-[12px] p-6 shadow-whisper flex flex-col gap-6">
+      <div class="flex items-center justify-between border-b border-[#ebebeb] pb-3">
+        <span class="type-mono-eyebrow text-[#171717]">ONCHAIN ACCOUNTS & INVARIANTS</span>
+        <span class="text-xs font-sans text-[#8f8f8f]">Anchor IDL: <code class="font-mono text-xs text-[#171717]">tranche_vault</code></span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
+        <div class="flex flex-col gap-1">
+          <span class="text-[11px] font-sans text-[#8f8f8f] uppercase tracking-wider">Sponsor Wallet</span>
+          <div class="font-mono text-xs text-[#171717] font-medium truncate">{vault.sponsor}</div>
+          <CopyButton text={vault.sponsor} label="copy" class="text-[10px] py-0 px-1 self-start font-sans" />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <span class="text-[11px] font-sans text-[#8f8f8f] uppercase tracking-wider">Agent Wallet</span>
+          <div class="font-mono text-xs text-[#171717] font-medium truncate">{vault.agent}</div>
+          <CopyButton text={vault.agent} label="copy" class="text-[10px] py-0 px-1 self-start font-sans" />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <span class="text-[11px] font-sans text-[#8f8f8f] uppercase tracking-wider">Verifier Oracle</span>
+          <div class="font-mono text-xs text-[#171717] font-medium truncate">{vault.oracle}</div>
+          <CopyButton text={vault.oracle} label="copy" class="text-[10px] py-0 px-1 self-start font-sans" />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <span class="text-[11px] font-sans text-[#8f8f8f] uppercase tracking-wider">Timelock Expiration</span>
+          <div class="font-mono text-xs text-[#171717] font-medium">{vault.expiresAt}</div>
+          <span class="text-[11px] font-sans text-[#8f8f8f]">Bumps: <span class="font-mono text-[#171717]">{vault.bump} / {vault.vaultBump}</span></span>
+        </div>
+
+        {vault.initTx && (
+          <div class="flex flex-col gap-1 col-span-1 md:col-span-2">
+            <span class="text-[11px] font-sans text-[#8f8f8f] uppercase tracking-wider">Initialization Devnet Tx</span>
+            <a 
+              href={`https://explorer.solana.com/tx/${vault.initTx}?cluster=devnet`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="font-mono text-xs text-[#0070f3] hover:underline truncate"
+            >
+              {vault.initTx} &rarr;
+            </a>
+          </div>
+        )}
+
+        {vault.clawbackTx && (
+          <div class="flex flex-col gap-1 col-span-1 md:col-span-2">
+            <span class="text-[11px] font-sans text-[#8f8f8f] uppercase tracking-wider">Clawback Refund Devnet Tx</span>
+            <a 
+              href={`https://explorer.solana.com/tx/${vault.clawbackTx}?cluster=devnet`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="font-mono text-xs text-[#0070f3] hover:underline truncate"
+            >
+              {vault.clawbackTx} &rarr;
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script define:vars={{ vaultId: vault.id }}>
+  // Client-side live confirmation of account state from Solana Devnet RPC
+  if (typeof window !== 'undefined' && vaultId) {
+    const indicator = document.getElementById('live-rpc-badge');
+    if (indicator) indicator.textContent = 'DEVNET // SYNCING...';
+
+    fetch('https://api.devnet.solana.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'getAccountInfo',
+        params: [vaultId, { encoding: 'base64' }]
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (indicator) {
+        if (data?.result?.value) {
+          indicator.textContent = 'DEVNET LIVE // ONCHAIN VERIFIED';
+          indicator.className = 'type-mono-eyebrow text-[#10b981] hidden sm:inline';
+        } else {
+          indicator.textContent = 'DEVNET // CACHED STATE';
+          indicator.className = 'type-mono-eyebrow text-[#8f8f8f] hidden sm:inline';
+        }
+      }
+    })
+    .catch(() => {
+      if (indicator) {
+        indicator.textContent = 'DEVNET // OFFLINE CACHE';
+        indicator.className = 'type-mono-eyebrow text-[#8f8f8f] hidden sm:inline';
+      }
+    });
+  }
+</script>

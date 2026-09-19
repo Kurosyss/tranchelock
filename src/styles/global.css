@@ -1,0 +1,490 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   OFFICIAL VERCEL GEIST FONT FAMILY DECLARATIONS
+   Directly loaded from local woff2 files in /fonts/
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* Geist Sans Variable */
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Mono Variable */
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/GeistMono-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── 5 Official Geist Pixel Variants ────────────────────────────────────────── */
+
+/* 1. Geist Pixel Square (Blocky, digital milestone markers) */
+@font-face {
+  font-family: 'GeistPixelSquare';
+  src: url('/fonts/geist-pixel/GeistPixel-Square.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. Geist Pixel Grid (Crosshair matrix, verified status) */
+@font-face {
+  font-family: 'GeistPixelGrid';
+  src: url('/fonts/geist-pixel/GeistPixel-Grid.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 3. Geist Pixel Circle (Rounded dots, capital & financial amounts) */
+@font-face {
+  font-family: 'GeistPixelCircle';
+  src: url('/fonts/geist-pixel/GeistPixel-Circle.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 4. Geist Pixel Triangle (Execution & transition indicators) */
+@font-face {
+  font-family: 'GeistPixelTriangle';
+  src: url('/fonts/geist-pixel/GeistPixel-Triangle.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 5. Geist Pixel Line (Telemetry callouts) */
+@font-face {
+  font-family: 'GeistPixelLine';
+  src: url('/fonts/geist-pixel/GeistPixel-Line.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   DESIGN SYSTEM TOKENS — EXACTLY EXTRACTED FROM DESIGN.MD
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+@layer base {
+  :root {
+    color-scheme: light;
+
+    /* Palette Ladder */
+    --primary: #171717;
+    --on-primary: #ffffff;
+    --ink: #171717;
+    --body: #4d4d4d;
+    --mute: #8f8f8f;
+    --faint: #a1a1a1;
+    --hairline: #ebebeb;
+    --hairline-soft: #f2f2f2;
+    --canvas: #fafafa;
+    --canvas-elevated: #ffffff;
+
+    /* Link & Semantic */
+    --link: #0070f3;
+    --link-deep: #0761d1;
+    --link-soft: #d3e5ff;
+    --error: #ee0000;
+    --error-deep: #c50000;
+    --warning: #f5a623;
+    --warning-soft: #ffefcf;
+    --warning-deep: #ab570a;
+    --signal-pass: #10b981;
+    --signal-solana: #14f195;
+
+    /* Mesh Gradient Accents (Confined to Hero) */
+    --violet: #7928ca;
+    --violet-soft: #d8ccf1;
+    --cyan: #50e3c2;
+    --cyan-soft: #aaffec;
+    --pink: #ff0080;
+    --magenta: #eb367f;
+    --gradient-develop-start: #007cf0;
+    --gradient-develop-end: #00dfd8;
+    --gradient-preview-start: #7928ca;
+    --gradient-preview-end: #ff0080;
+    --gradient-ship-start: #ff4d4d;
+    --gradient-ship-end: #f9cb28;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--body);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   GEIST PIXEL REUSABLE UTILITIES (RESERVED FOR HIGH-IMPACT MOMENTS)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.pixel-square {
+  font-family: 'GeistPixelSquare', 'Geist Mono', monospace;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pixel-grid {
+  font-family: 'GeistPixelGrid', 'Geist Mono', monospace;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pixel-circle {
+  font-family: 'GeistPixelCircle', 'Geist Mono', monospace;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.pixel-triangle {
+  font-family: 'GeistPixelTriangle', 'Geist Mono', monospace;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pixel-line {
+  font-family: 'GeistPixelLine', 'Geist Mono', monospace;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SYSTEMATIC TYPOGRAPHY TOKENS (EXACT MAPPING TO DESIGN.MD)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.type-display-xl {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -2.4px;
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .type-display-xl {
+    font-size: 34px;
+    line-height: 38px;
+    letter-spacing: -1.7px;
+  }
+}
+
+.type-heading-lg {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: -1.28px;
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .type-heading-lg {
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: -1px;
+  }
+}
+
+.type-heading-md {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.4px;
+  color: var(--ink);
+}
+
+.type-label-sm {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+  color: var(--ink);
+}
+
+.type-mono-eyebrow {
+  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.type-body-lg {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--body);
+}
+
+.type-body-md {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: var(--body);
+}
+
+.type-body-sm {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: var(--mute);
+}
+
+.type-button-lg {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.type-button-md {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.type-code {
+  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   LAYOUT CONTAINERS & READING WIDTHS (DESIGN.MD)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.container-page {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.container-reading {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+}
+
+.container-docs {
+  max-width: 768px;
+  width: 100%;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   BUTTONS (EXACT DESIGN.MD BIMODAL SYSTEM)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* Marketing Pill Primary (100px radius, 0 14px padding) */
+.btn-pill-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 10px 18px;
+  border-radius: 100px;
+  transition: background-color 150ms ease;
+  white-space: nowrap;
+}
+.btn-pill-primary:hover {
+  background-color: #333333;
+}
+
+/* Marketing Pill Secondary (White elevated, 100px radius) */
+.btn-pill-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--canvas-elevated);
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 10px 18px;
+  border-radius: 100px;
+  box-shadow: 0px 1px 1px rgba(0,0,0,0.04);
+  transition: background-color 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+}
+.btn-pill-secondary:hover {
+  background-color: var(--hairline-soft);
+}
+
+/* Nav & In-App Small Square (6px radius) */
+.btn-square-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background-color 150ms ease;
+  white-space: nowrap;
+}
+.btn-square-primary:hover {
+  background-color: #333333;
+}
+
+/* Nav & In-App Ghost Small Square (6px radius) */
+.btn-square-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--canvas-elevated);
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  box-shadow: 0px 1px 1px rgba(0,0,0,0.04);
+  transition: background-color 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+}
+.btn-square-ghost:hover {
+  background-color: var(--hairline-soft);
+}
+
+/* Category Tab Pill (64px radius) */
+.btn-category-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--canvas-elevated);
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 4px 14px;
+  border-radius: 64px;
+  transition: all 150ms ease;
+  white-space: nowrap;
+}
+.btn-category-pill.active {
+  background-color: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   HERO MULTI-STOP MESH GRADIENT (CONFINED EXCLUSIVELY TO HERO)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.hero-mesh-gradient {
+  background: 
+    radial-gradient(ellipse 65% 50% at 50% -10%, 
+      rgba(80, 227, 194, 0.18) 0%, 
+      rgba(0, 124, 240, 0.14) 25%, 
+      rgba(121, 40, 202, 0.12) 50%, 
+      rgba(235, 54, 127, 0.08) 75%, 
+      rgba(249, 203, 40, 0.05) 90%, 
+      transparent 100%
+    );
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   ELEVATION & DEPTH (DESIGN.MD)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.shadow-whisper {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-floating {
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.03), 0px 8px 16px -4px rgba(0, 0, 0, 0.06);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   CARDS & PANELS (EXACT DESIGN.MD SURFACES)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.feature-card {
+  background-color: var(--canvas-elevated);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.code-block-surface {
+  background-color: var(--hairline-soft);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  font-family: 'Geist Mono', monospace;
+}

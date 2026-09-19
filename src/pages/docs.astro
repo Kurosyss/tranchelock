@@ -1,0 +1,328 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CopyButton from '../components/ui/CopyButton.astro';
+import { DEVNET_TLUSD, OFFICIAL_DEVNET_USDC } from '../config/tokens';
+---
+
+<Layout title="Protocol Specification // TRANCHELOCK">
+  <Header />
+
+  <main class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-12 flex flex-col gap-10">
+    <!-- Header -->
+    <div class="border-b border-[#ebebeb] pb-8 flex flex-col gap-3">
+      <div class="flex items-center gap-2 text-xs font-mono text-[#8f8f8f]">
+        <span class="type-mono-eyebrow text-[#171717]">SPECIFICATION 3.2</span>
+        <span>•</span>
+        <span>TRANCHELOCK PROTOCOL ARCHITECTURE</span>
+        <span>•</span>
+        <span>ONCHAIN / OFFCHAIN BOUNDARIES</span>
+      </div>
+      <h1 class="type-heading-lg pt-1">
+        Protocol Documentation
+      </h1>
+      <p class="type-body-lg max-w-3xl">
+        Technical specification for milestone PDA state machines, isolated test assertion sandboxes, Google Gemini structured criteria reasoning, and Solana Ed25519 instruction introspection.
+      </p>
+    </div>
+
+    <!-- Docs Layout: Sticky Technical Sidebar + Narrow Reading Content Body -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Sticky Sidebar -->
+      <aside class="lg:col-span-3 sticky top-20 flex flex-col gap-4 font-sans text-sm border-r border-[#ebebeb] pr-6">
+        <span class="type-mono-eyebrow text-[#8f8f8f]">SPEC SECTIONS</span>
+        <nav id="docs-sidebar-nav" class="flex flex-col gap-1 text-xs font-sans">
+          <a href="#overview" class="docs-nav-link px-3 py-1.5 rounded-[6px] bg-[#171717] text-white font-medium transition-colors block">1. Architectural Topology</a>
+          <a href="#vault-state" class="docs-nav-link px-3 py-1.5 rounded-[6px] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors block">2. Vault PDA State</a>
+          <a href="#milestone-spec" class="docs-nav-link px-3 py-1.5 rounded-[6px] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors block">3. Private Spec Commitments</a>
+          <a href="#dual-verifier" class="docs-nav-link px-3 py-1.5 rounded-[6px] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors block">4. Dual-Layer Verifier</a>
+          <a href="#canonical-payload" class="docs-nav-link px-3 py-1.5 rounded-[6px] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors block">5. 153-Byte Canonical Buffer</a>
+          <a href="#ed25519-introspection" class="docs-nav-link px-3 py-1.5 rounded-[6px] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors block">6. Instruction Introspection</a>
+          <a href="#clawback-invariants" class="docs-nav-link px-3 py-1.5 rounded-[6px] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors block">7. Timelock Clawback</a>
+          <a href="#token-allowlist" class="docs-nav-link px-3 py-1.5 rounded-[6px] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors block">8. Token Allowlisting</a>
+        </nav>
+
+        <div class="pt-6 border-t border-[#ebebeb] flex flex-col gap-2 text-xs text-[#8f8f8f]">
+          <span class="type-mono-eyebrow text-[#8f8f8f]">PROGRAM ID:</span>
+          <code class="font-mono text-xs text-[#171717] break-all">3SBmcsZqGHbLzxrBR2ZzrfSnufHFpzM6GHY6TiijebtM</code>
+          <CopyButton text="3SBmcsZqGHbLzxrBR2ZzrfSnufHFpzM6GHY6TiijebtM" label="Copy ID" class="self-start text-[10px] mt-1 font-sans" />
+        </div>
+      </aside>
+
+      <!-- Main Docs Content Area (Narrow, highly readable column container-docs) -->
+      <div class="lg:col-span-9 max-w-[768px] flex flex-col gap-16 text-sm text-[#4d4d4d] leading-relaxed">
+        
+        <!-- 1. Protocol Architecture -->
+        <section id="overview" class="flex flex-col gap-6 scroll-mt-24">
+          <div class="flex items-center gap-2">
+            <span class="pixel-square text-xs text-[#8f8f8f]">01</span>
+            <h2 class="type-heading-md">Architectural Topology</h2>
+          </div>
+          <p class="type-body-md">
+            Autonomous coding agents require compute capital and milestone rewards, but sponsors cannot safely disburse complete funding upfront. Traditional crypto escrows rely on human multisig or centralized arbiters, introducing friction and counterparty risk.
+          </p>
+          <p class="type-body-md">
+            <strong class="text-[#171717] font-medium">TrancheLock</strong> introduces programmatic milestone escrows on Solana. Capital is locked upfront in a PDA vault, locking committed escrow capital for the autonomous agent. Capital releases automatically when the agent's work satisfies deterministic private test suites verified in a sandbox, evaluated by Gemini structured criteria reasoning, and attested via an Ed25519 oracle signature verified by Solana instruction introspection.
+          </p>
+
+          <!-- Vector Architecture Flow (Real HTML/SVG Diagram - NOT ASCII ART) -->
+          <div class="border border-[#ebebeb] rounded-[8px] bg-white p-6 flex flex-col gap-6 shadow-whisper">
+            <div class="flex items-center justify-between border-b border-[#ebebeb] pb-3 text-[11px]">
+              <span class="type-mono-eyebrow text-[#171717]">INTER-LAYER COMMUNICATION PIPELINE</span>
+              <span class="type-mono-eyebrow text-[#10b981]">ONCHAIN / OFFCHAIN SEPARATION</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 relative">
+              <!-- Node 1: Deposit -->
+              <div class="p-4 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] flex flex-col gap-2">
+                <span class="type-mono-eyebrow text-[#8f8f8f]">[ONCHAIN]</span>
+                <div class="type-label-sm text-[#171717]">Sponsor Escrow Deposit</div>
+                <p class="type-body-sm text-[#4d4d4d]">
+                  Locks escrow tokens (TLUSD/USDC) in Token Vault PDA. Commits private test suite SHA-256 hashes.
+                </p>
+              </div>
+
+              <!-- Node 2: Sandbox & Gemini -->
+              <div class="p-4 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] flex flex-col gap-2">
+                <span class="type-mono-eyebrow text-[#8f8f8f]">[OFFCHAIN VERIFIER]</span>
+                <div class="type-label-sm text-[#171717]">Sandbox & Gemini Audit</div>
+                <p class="type-body-sm text-[#4d4d4d]">
+                  Pytest executes in an isolated sandbox runner. Gemini evaluates structured Pydantic criteria.
+                </p>
+              </div>
+
+              <!-- Node 3: Solana Settlement -->
+              <div class="p-4 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] flex flex-col gap-2">
+                <span class="type-mono-eyebrow text-[#10b981]">[ONCHAIN RUNTIME]</span>
+                <div class="type-label-sm text-[#171717]">Ed25519 Introspection</div>
+                <p class="type-body-sm text-[#4d4d4d]">
+                  Solana verifies 153-byte payload in ix[n-1]. Tranche tokens disburse to Agent ATA.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Vault PDA State -->
+        <section id="vault-state" class="flex flex-col gap-4 scroll-mt-24 border-t border-[#ebebeb] pt-12">
+          <div class="flex items-center gap-2">
+            <span class="pixel-square text-xs text-[#8f8f8f]">02</span>
+            <h2 class="type-heading-md">Vault PDA State Machine</h2>
+          </div>
+          <p class="type-body-md">
+            Each escrow vault is a Program Derived Address (PDA) derived from seeds: <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">[b"tranche_vault", sponsor.key(), token_mint.key()]</code>. Associated token funds reside in a secondary token vault derived from <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">[b"token_vault", vault.key()]</code>.
+          </p>
+
+          <pre class="p-4 rounded-[6px] bg-[#f2f2f2] border border-[#ebebeb] overflow-x-auto font-mono text-xs text-[#171717] leading-relaxed">
+#[account]
+pub struct TrancheVault &#123;
+    pub sponsor: Pubkey,                      // 32 bytes: Escrow funder authority
+    pub agent: Pubkey,                        // 32 bytes: Recipient agent wallet
+    pub verifier_oracle: Pubkey,              // 32 bytes: Authorized Ed25519 signer
+    pub token_mint: Pubkey,                   // 32 bytes: Allowlisted token mint (TLUSD / USDC)
+    pub milestone_spec_hashes: [[u8; 32]; 4], // 128 bytes: Private test suite hashes
+    pub total_tranches: u8,                   // 1 byte: Number of tranches (1..=4)
+    pub current_tranche: u8,                  // 1 byte: Monotonic sequence counter
+    pub tranche_amounts: [u64; 4],            // 32 bytes: Base token units per tranche
+    pub tranche_status: [u8; 4],              // 4 bytes: 0=Locked, 1=Released, 2=Refunded
+    pub expires_at: i64,                      // 8 bytes: Expiration Unix timestamp
+    pub bump: u8,                             // 1 byte: Vault PDA bump
+    pub vault_bump: u8,                       // 1 byte: Token vault PDA bump
+&#125;
+          </pre>
+        </section>
+
+        <!-- 3. Milestone Spec Hashing -->
+        <section id="milestone-spec" class="flex flex-col gap-4 scroll-mt-24 border-t border-[#ebebeb] pt-12">
+          <div class="flex items-center gap-2">
+            <span class="pixel-square text-xs text-[#8f8f8f]">03</span>
+            <h2 class="type-heading-md">Private Spec Commitments</h2>
+          </div>
+          <p class="type-body-md">
+            To prevent test suite gaming, overfitting, or prompt injection, acceptance test suites are kept <strong class="text-[#171717] font-medium">strictly verifier-side</strong>:
+          </p>
+          <ul class="list-disc pl-5 flex flex-col gap-2 type-body-md text-[#4d4d4d]">
+            <li>Sponsor computes: <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">milestone_spec_hash = SHA-256(private_test_suite)</code> and commits it onchain during vault initialization.</li>
+            <li>Agent only receives public interface definitions and guidance criteria, never the private acceptance tests.</li>
+            <li>Upon submission, the verifier validates the private test suite on disk matches the committed onchain spec hash before starting the sandbox.</li>
+          </ul>
+        </section>
+
+        <!-- 4. Dual-Layer Verifier -->
+        <section id="dual-verifier" class="flex flex-col gap-4 scroll-mt-24 border-t border-[#ebebeb] pt-12">
+          <div class="flex items-center gap-2">
+            <span class="pixel-square text-xs text-[#8f8f8f]">04</span>
+            <h2 class="type-heading-md">Dual-Layer Verifier Architecture</h2>
+          </div>
+          <p class="type-body-md">
+            TrancheLock combines deterministic software assertion testing with Google Gemini structured criteria reasoning:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+              <span class="type-label-sm text-[#171717]">Layer 1: Deterministic Sandbox</span>
+              <p class="type-body-sm text-[#4d4d4d]">
+                Executes pytest inside an isolated subprocess runner with stripped environment variables and process timeout. Extracts exit code, duration, passed/failed test names, and stderr traces.
+              </p>
+            </div>
+            <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+              <span class="type-label-sm text-[#171717]">Layer 2: Gemini Structured Reasoning</span>
+              <p class="type-body-sm text-[#4d4d4d]">
+                Evaluates observable deterministic evidence against sponsor acceptance criteria using structured Pydantic schemas. If tests fail, returns structured diagnostics to agent.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Canonical 153-Byte Payload -->
+        <section id="canonical-payload" class="flex flex-col gap-4 scroll-mt-24 border-t border-[#ebebeb] pt-12">
+          <div class="flex items-center gap-2">
+            <span class="pixel-square text-xs text-[#8f8f8f]">05</span>
+            <h2 class="type-heading-md">153-Byte Canonical Buffer Scheme</h2>
+          </div>
+          <p class="type-body-md">
+            When 100% of milestone criteria are verified, the verifier oracle signs an exact 153-byte payload tightly binding release parameters:
+          </p>
+
+          <pre class="p-4 rounded-[6px] bg-[#f2f2f2] border border-[#ebebeb] font-mono text-xs text-[#171717] overflow-x-auto leading-relaxed">
+[00..32]  : vault_pda (32 bytes Pubkey)
+[32]      : milestone_idx (1 byte u8)
+[33..65]  : agent_wallet (32 bytes Pubkey)
+[65..97]  : submission_hash (32 bytes SHA-256 of source snapshot)
+[97..129] : milestone_spec_hash (32 bytes SHA-256 of test suite)
+[129..137]: tranche_amount (8 bytes little-endian u64)
+[137..145]: expires_at (8 bytes little-endian i64)
+[145..153]: nonce (8 bytes little-endian u64)
+          </pre>
+        </section>
+
+        <!-- 6. Ed25519 Introspection -->
+        <section id="ed25519-introspection" class="flex flex-col gap-4 scroll-mt-24 border-t border-[#ebebeb] pt-12">
+          <div class="flex items-center gap-2">
+            <span class="pixel-square text-xs text-[#8f8f8f]">06</span>
+            <h2 class="type-heading-md">Instruction Introspection (Sysvar)</h2>
+          </div>
+          <p class="type-body-md">
+            Solana transactions executing <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">release_tranche</code> must contain an <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">Ed25519SigVerify</code> precompile instruction <strong class="text-[#171717] font-medium">immediately preceding</strong> the release instruction:
+          </p>
+          <ul class="list-disc pl-5 flex flex-col gap-2 type-body-md text-[#4d4d4d]">
+            <li><code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">load_current_index_checked(&instructions_sysvar)?</code> confirms current instruction position.</li>
+            <li>Verifies instruction <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">current_index - 1</code> is native <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">ed25519_program::ID</code>.</li>
+            <li>Verifies data header specifies <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">num_signatures == 1</code>.</li>
+            <li>Matches oracle public key bytes against <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">vault.verifier_oracle</code>.</li>
+            <li>Matches message bytes against reconstructed canonical 153-byte payload.</li>
+          </ul>
+        </section>
+
+        <!-- 7. Timelock Clawback -->
+        <section id="clawback-invariants" class="flex flex-col gap-4 scroll-mt-24 border-t border-[#ebebeb] pt-12">
+          <div class="flex items-center gap-2">
+            <span class="pixel-square text-xs text-[#8f8f8f]">07</span>
+            <h2 class="type-heading-md">Timelock Clawback & Expiration</h2>
+          </div>
+          <p class="type-body-md">
+            If an agent abandons work or becomes unresponsive, sponsors are protected by the timelock clawback:
+          </p>
+          <ul class="list-disc pl-5 flex flex-col gap-2 type-body-md text-[#4d4d4d]">
+            <li><strong class="text-[#171717] font-medium">Released Funds Inviolable:</strong> Any capital already disbursed to the agent cannot be clawed back under any circumstances.</li>
+            <li><strong class="text-[#171717] font-medium">Refund of Unreleased Capital:</strong> The sponsor can call <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">clawback()</code> strictly after <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">clock.unix_timestamp > vault.expires_at</code>.</li>
+            <li><strong class="text-[#171717] font-medium">Completed Vault Protection:</strong> Clawback fails with <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">NoFundsToClawback</code> if all tranches have been settled.</li>
+          </ul>
+        </section>
+
+        <!-- 8. Token Allowlisting -->
+        <section id="token-allowlist" class="flex flex-col gap-4 scroll-mt-24 border-t border-[#ebebeb] pt-12">
+          <div class="flex items-center gap-2">
+            <span class="pixel-square text-xs text-[#8f8f8f]">08</span>
+            <h2 class="type-heading-md">Token Allowlisting</h2>
+          </div>
+          <p class="type-body-md">
+            To ensure deterministic escrow settlement, TrancheLock operates with verified 6-decimal token mints on Solana Devnet:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+              <div class="flex items-center justify-between text-xs">
+                <span class="type-mono-eyebrow text-[#8f8f8f]">DEVNET TLUSD (ACTIVE TEST MINT):</span>
+                <a href={DEVNET_TLUSD.explorerUrl} target="_blank" class="font-sans text-xs text-[#0070f3] hover:underline">Solana Explorer &rarr;</a>
+              </div>
+              <div class="font-mono text-xs text-[#171717] break-all font-medium">
+                {DEVNET_TLUSD.mint}
+              </div>
+              <span class="type-body-sm text-[#8f8f8f]">Decimals: <span class="font-mono text-[#171717]">6</span> • Primary Devnet Escrow Token</span>
+            </div>
+
+            <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+              <div class="flex items-center justify-between text-xs">
+                <span class="type-mono-eyebrow text-[#8f8f8f]">CIRCLE DEVNET USDC:</span>
+                <a href={OFFICIAL_DEVNET_USDC.explorerUrl} target="_blank" class="font-sans text-xs text-[#0070f3] hover:underline">Solana Explorer &rarr;</a>
+              </div>
+              <div class="font-mono text-xs text-[#171717] break-all font-medium">
+                {OFFICIAL_DEVNET_USDC.mint}
+              </div>
+              <span class="type-body-sm text-[#8f8f8f]">Decimals: <span class="font-mono text-[#171717]">6</span> • Supported Devnet Mint</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  function setupDocsNav() {
+    const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.docs-nav-link'));
+    if (!navLinks.length) return;
+
+    const sections = navLinks.map(link => {
+      const id = link.getAttribute('href')?.replace('#', '');
+      return { id, el: id ? document.getElementById(id) : null, link };
+    }).filter((s): s is { id: string; el: HTMLElement; link: HTMLAnchorElement } => !!s.el);
+
+    if (!sections.length) return;
+
+    let isClickScrolling = false;
+    let clickTimeout: any = null;
+
+    function setActive(activeLink: HTMLAnchorElement) {
+      navLinks.forEach(link => {
+        if (link === activeLink) {
+          link.className = 'docs-nav-link px-3 py-1.5 rounded-[6px] bg-[#171717] text-white font-medium transition-colors block';
+        } else {
+          link.className = 'docs-nav-link px-3 py-1.5 rounded-[6px] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors block';
+        }
+      });
+    }
+
+    function onScroll() {
+      if (isClickScrolling) return;
+      const scrollPos = window.scrollY + 140; // sticky header + margin offset
+      let current = sections[0];
+      for (const section of sections) {
+        if (section.el.offsetTop <= scrollPos) {
+          current = section;
+        }
+      }
+      if (current) {
+        setActive(current.link);
+      }
+    }
+
+    sections.forEach(s => {
+      s.link.addEventListener('click', () => {
+        isClickScrolling = true;
+        setActive(s.link);
+        if (clickTimeout) clearTimeout(clickTimeout);
+        clickTimeout = setTimeout(() => {
+          isClickScrolling = false;
+        }, 800);
+      });
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  document.addEventListener('astro:page-load', setupDocsNav);
+</script>

@@ -1,0 +1,59 @@
+---
+interface Props {
+  variant?: 'pass' | 'fail' | 'pending' | 'crypto' | 'solana' | 'neutral' | 'mono';
+  pixel?: boolean;
+  pixelVariant?: 'square' | 'grid' | 'circle' | 'triangle' | 'line';
+  size?: 'xs' | 'sm';
+  class?: string;
+  dot?: boolean;
+}
+
+const { 
+  variant = 'neutral', 
+  pixel = false, 
+  pixelVariant = 'square',
+  size = 'xs',
+  dot = false,
+  class: className = '' 
+} = Astro.props;
+
+const variantStyles = {
+  pass: 'text-[#10b981] bg-[#10b981]/10 border-[#10b981]/25',
+  fail: 'text-[#ee0000] bg-[#ee0000]/10 border-[#ee0000]/25',
+  pending: 'text-[#ab570a] bg-[#ffefcf] border-[#f5a623]/30',
+  crypto: 'text-[#171717] bg-[#f2f2f2] border-[#ebebeb]',
+  solana: 'text-[#171717] bg-[#f2f2f2] border-[#ebebeb]',
+  neutral: 'text-[#4d4d4d] bg-[#f2f2f2] border-[#ebebeb]',
+  mono: 'text-[#171717] bg-white border-[#ebebeb]',
+};
+
+const dotColors = {
+  pass: 'bg-[#10b981]',
+  fail: 'bg-[#ee0000]',
+  pending: 'bg-[#f5a623]',
+  crypto: 'bg-[#171717]',
+  solana: 'bg-[#10b981]',
+  neutral: 'bg-[#8f8f8f]',
+  mono: 'bg-[#171717]',
+};
+
+const pixelClasses = {
+  square: 'pixel-square text-[9px]',
+  grid: 'pixel-grid text-[9px]',
+  circle: 'pixel-circle text-[9px]',
+  triangle: 'pixel-triangle text-[9px]',
+  line: 'pixel-line text-[9px]',
+};
+
+const sizeStyles = {
+  xs: 'px-1.5 py-0.5 text-[10px]',
+  sm: 'px-2 py-0.5 text-xs',
+};
+
+const fontClass = pixel ? pixelClasses[pixelVariant] : 'font-mono';
+---
+
+<span class={`inline-flex items-center gap-1.5 rounded-[4px] border font-medium select-none ${variantStyles[variant]} ${sizeStyles[size]} ${fontClass} ${className}`}>
+  {dot && <span class={`w-1.5 h-1.5 rounded-full ${dotColors[variant]}`}></span>}
+  <slot />
+</span>

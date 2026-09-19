@@ -1,0 +1,16 @@
+{
+  "programId": "3SBmcsZqGHbLzxrBR2ZzrfSnufHFpzM6GHY6TiijebtM",
+  "tokenMint": "7oKiSro2j98G3NigDYzb6EfisnnAxhg3DTTio6yf6xjW",
+  "sponsor": "9cxHstyCEHRAazJJuL3FrpMH6LJsKSPLP5Vouo4yWYwV",
+  "agent": "3a5rCTRmQ9B74GnietwFSfqKJirEHjqZdEaCMQeSnksP",
+  "vaultPda": "GbkWd144roWeT7uE1KxEJVQ2Wvk3ZV84vLp6hUii6Kno",
+  "tokenVaultPda": "DyhMBzTHUpA2EDxdVs2RGaPGbuyJdXwsVZ3wsLDdfZSg",
+  "oracle": "HyiP6tqPGE9wX6oBNPeS8eBhhsEpKar4VzQphRWVGf5W",
+  "initTx": "593zXLeLpX7mV21iHS5DgvMH45CKyyFGWNgPLUwSuduwo9b8oFXEvCQb6EhM43Xrvb7YGgNB5FNVapXCX12LbDFJ",
+  "releaseSig1": "3zUnyYkd8xLySWti5jhZL9xhw6yqx1U6gTHB1bXaPBcnAWvVGFxsoQ3t4C6Ap39Msx6c6NyDsBn23Apati9Zq8bM",
+  "releaseSig2": "HqSU1zEPg4tSQDQHNAWaKm11DoqdyeYBkNC9Yk6MPtVwTsNU1TaosoRr1ocnxSpCCJVxnudfNUVdGcHbg4wBXrg",
+  "vaultBalance": 0,
+  "agentBalance": 100,
+  "timestamp": "2026-09-19T10:19:26.958Z",
+  "status": "SUCCESS_CONFIRMED_ON_DEVNET"
+}

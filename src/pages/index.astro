@@ -1,0 +1,456 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/ui/Button.astro';
+import { ACTIVE_TOKEN } from '../config/tokens';
+---
+
+<Layout title="TRANCHELOCK — Milestone-Gated Capital for Autonomous Coding Agents">
+  <Header />
+
+  <main class="flex flex-col w-full bg-[#fafafa] text-[#4d4d4d]">
+    
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         1. HERO BAND (EXACT VERCEL DESIGN.MD HERO SPECIFICATION)
+         Near-white sheet, soft multi-stop mesh gradient bloom, display-xl type,
+         bimodal button CTAs, and a single coherent optical visual mechanism.
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <section class="relative pt-16 pb-24 border-b border-[#ebebeb] hero-mesh-gradient overflow-hidden">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-12">
+        
+        <!-- Eyebrow & Status -->
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#ebebeb]/80 pb-4 text-xs">
+          <div class="flex items-center gap-3">
+            <span class="type-mono-eyebrow text-[#171717] flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+              SOLANA DEVNET // CLUSTER VERIFIED
+            </span>
+            <span class="text-[#ebebeb]">|</span>
+            <span class="text-xs">
+              <span class="font-sans text-[#8f8f8f]">Program:</span> <span class="font-mono text-[#171717]">3SBmcs...ebtM</span>
+            </span>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs text-[#8f8f8f]">
+            <span><span class="font-sans text-[#8f8f8f]">Settlement:</span> <strong class="font-sans text-[#171717] font-medium">Devnet TLUSD</strong></span>
+            <span>•</span>
+            <span class="font-mono text-[#10b981] font-medium">22/22 INVARIANTS SOUND</span>
+          </div>
+        </div>
+
+        <!-- Typography & Heading Core -->
+        <div class="flex flex-col gap-6 max-w-4xl pt-2">
+          <span class="type-mono-eyebrow text-[#8f8f8f]">
+            Autonomous Work Settlement Primitive
+          </span>
+
+          <h1 class="type-display-xl">
+            Milestone-gated capital for autonomous coding agents.
+          </h1>
+
+          <p class="type-body-lg max-w-2xl">
+            Upfront lump-sums invite abandoned tasks. Post-payment leaves agents unpaid. <strong class="text-[#171717] font-semibold">TrancheLock</strong> bridges the trust gap: escrow capital unlocks from Solana escrow vaults strictly when sandboxed code produces cryptographic Ed25519 proof verified by runtime instruction introspection.
+          </p>
+
+          <!-- Bimodal Button CTAs (DESIGN.md) -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="/demo" class="btn-pill-primary">
+              <span>Run 90s Lifecycle Demo</span>
+              <span class="text-xs">&rarr;</span>
+            </a>
+
+            <a href="/docs" class="btn-pill-secondary">
+              Read Technical Specification
+            </a>
+
+            <a href="/security" class="text-xs font-mono text-[#8f8f8f] hover:text-[#171717] transition-colors py-2 px-1">
+              [22 Formal Security Invariants &rarr;]
+            </a>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════════════
+             2. CORE OPTICAL MECHANISM
+             CRITERIA → EXECUTION → PROOF → CAPITAL
+             One single aligned optical instrument, zero ASCII, hairline bordered.
+             ══════════════════════════════════════════════════════════════════════ -->
+        <div class="bg-white border border-[#ebebeb] rounded-[12px] p-6 sm:p-8 shadow-whisper flex flex-col gap-6 mt-4">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#ebebeb] pb-4">
+            <div class="flex items-center gap-3">
+              <span class="type-mono-eyebrow text-[#171717]">CORE SETTLEMENT CONDUIT</span>
+              <span class="text-xs font-mono text-[#8f8f8f]">SHA-256 SPEC COMMITMENT &rarr; ED25519 VERIFICATION</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/20">
+                100% DETERMINISTIC
+              </span>
+            </div>
+          </div>
+
+          <!-- 4-Stage Aligned Optical Conduit -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+            
+            <!-- Node 1: Criteria -->
+            <div class="flex flex-col justify-between p-4 bg-[#fafafa] border border-[#ebebeb] rounded-[8px] gap-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <span class="pixel-square text-xs text-[#8f8f8f]">01</span>
+                  <span class="font-sans text-xs font-medium text-[#171717]">CRITERIA</span>
+                </div>
+                <span class="text-[10px] font-mono text-[#8f8f8f]">ONCHAIN</span>
+              </div>
+              <div>
+                <div class="type-label-sm">Committed Spec Hash</div>
+                <p class="type-body-sm pt-1">Sponsor locks test spec hash into Vault PDA at initialization.</p>
+              </div>
+              <div class="text-[11px] bg-white p-2 rounded border border-[#ebebeb] truncate">
+                <span class="font-sans text-[#8f8f8f]">spec:</span> <span class="font-mono text-[#171717]">e3b0c44298fc...</span>
+              </div>
+            </div>
+
+            <!-- Node 2: Execution -->
+            <div class="flex flex-col justify-between p-4 bg-[#fafafa] border border-[#ebebeb] rounded-[8px] gap-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <span class="pixel-square text-xs text-[#8f8f8f]">02</span>
+                  <span class="font-sans text-xs font-medium text-[#171717]">EXECUTION</span>
+                </div>
+                <span class="text-[10px] font-mono text-[#8f8f8f]">SANDBOX</span>
+              </div>
+              <div>
+                <div class="type-label-sm">Isolated Sandbox Execution</div>
+                <p class="type-body-sm pt-1">Autonomous agent submits branch. Pytest runs in an isolated runner.</p>
+              </div>
+              <div class="text-[11px] font-mono text-[#10b981] bg-white p-2 rounded border border-[#ebebeb]">
+                ✓ 8 / 8 tests passing
+              </div>
+            </div>
+
+            <!-- Node 3: Proof -->
+            <div class="flex flex-col justify-between p-4 bg-[#fafafa] border border-[#ebebeb] rounded-[8px] gap-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <span class="pixel-square text-xs text-[#8f8f8f]">03</span>
+                  <span class="font-sans text-xs font-medium text-[#171717]">PROOF</span>
+                </div>
+                <span class="text-[10px] font-mono text-[#8f8f8f]">ED25519</span>
+              </div>
+              <div>
+                <div class="type-label-sm">Canonical 153-Byte Hash</div>
+                <p class="type-body-sm pt-1">Verifier oracle signs vault, milestone, agent, and amount payload.</p>
+              </div>
+              <div class="text-[11px] bg-white p-2 rounded border border-[#ebebeb] truncate">
+                <span class="font-sans text-[#8f8f8f]">sig:</span> <span class="font-mono text-[#171717]">5c9a72b14e80...</span>
+              </div>
+            </div>
+
+            <!-- Node 4: Capital -->
+            <div class="flex flex-col justify-between p-4 bg-[#fafafa] border border-[#ebebeb] rounded-[8px] gap-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <span class="pixel-square text-xs text-[#8f8f8f]">04</span>
+                  <span class="font-sans text-xs font-medium text-[#171717]">CAPITAL</span>
+                </div>
+                <span class="text-[10px] font-mono text-[#10b981] font-semibold">SETTLED</span>
+              </div>
+              <div>
+                <div class="type-label-sm">Sub-Second Release</div>
+                <p class="type-body-sm pt-1">Solana introspects precompile; moves tranche TLUSD directly to agent.</p>
+              </div>
+              <div class="text-[11px] bg-white p-2 rounded border border-[#ebebeb]">
+                <span class="font-sans font-semibold text-[#171717]">+$50.00 TLUSD</span> <span class="font-sans text-[#8f8f8f]">&rarr; Agent</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         3. EDITORIAL ASYMMETRY: WHY THE MECHANISM MATTERS
+         Contrasting upfront lump-sums vs post-payment vs milestone settlement.
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <section class="py-24 border-b border-[#ebebeb]">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-12">
+        
+        <div class="flex flex-col gap-3">
+          <span class="type-mono-eyebrow text-[#8f8f8f]">§ 2.0 // ECONOMIC FOUNDATION</span>
+          <h2 class="type-heading-lg max-w-2xl">The autonomous agent funding dilemma.</h2>
+          <p class="type-body-lg max-w-2xl">
+            Human freelancing relies on identity, reputation, and legal jurisdiction. Autonomous agents have none of these. Funding them requires a new economic primitive.
+          </p>
+        </div>
+
+        <!-- Asymmetric 3-Column Comparative Spec -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Column 1: Upfront Lump Sum -->
+          <div class="p-6 bg-white border border-[#ebebeb] rounded-[12px] flex flex-col justify-between gap-6 shadow-whisper">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs text-[#ee0000] font-semibold">FAILURE MODE 01</span>
+                <span class="text-xs font-mono text-[#8f8f8f]">100% SPONSOR RISK</span>
+              </div>
+              <h3 class="type-heading-md">Upfront Lump Sum</h3>
+              <p class="type-body-md">
+                The sponsor transfers $100 before work starts. If the model hallucinations trigger infinite loops or tests fail, the funds are permanently gone.
+              </p>
+            </div>
+            <div class="p-3 bg-[#fafafa] border border-[#ebebeb] rounded-[6px] text-xs flex items-center justify-between">
+              <span class="font-sans text-[#8f8f8f]">Outcome:</span>
+              <span class="font-mono text-[#ee0000] font-medium">$0.00 Recovered</span>
+            </div>
+          </div>
+
+          <!-- Column 2: Post-Pay Invoice -->
+          <div class="p-6 bg-white border border-[#ebebeb] rounded-[12px] flex flex-col justify-between gap-6 shadow-whisper">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs text-[#ee0000] font-semibold">FAILURE MODE 02</span>
+                <span class="text-xs font-mono text-[#8f8f8f]">100% AGENT RISK</span>
+              </div>
+              <h3 class="type-heading-md">Post-Payment Invoice</h3>
+              <p class="type-body-md">
+                The agent burns API credits and server time completing requirements, then submits a PR. The sponsor ignores the PR or refuses payment.
+              </p>
+            </div>
+            <div class="p-3 bg-[#fafafa] border border-[#ebebeb] rounded-[6px] text-xs flex items-center justify-between">
+              <span class="font-sans text-[#8f8f8f]">Outcome:</span>
+              <span class="font-mono text-[#ee0000] font-medium">Compute Loss & Non-Payment</span>
+            </div>
+          </div>
+
+          <!-- Column 3: TrancheLock Solution -->
+          <div class="p-6 bg-white border border-[#171717]/30 ring-1 ring-[#171717]/10 rounded-[12px] flex flex-col justify-between gap-6 shadow-floating">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs text-[#10b981] font-semibold">TRANCHELOCK SOLUTION</span>
+                <span class="text-xs font-mono text-[#10b981]">SYMMETRIC SAFETY</span>
+              </div>
+              <h3 class="type-heading-md">Milestone Escrow Vault</h3>
+              <p class="type-body-md">
+                Funds are escrowed in a Solana PDA. The agent sees proof of locked funds. As each test suite passes, capital releases instantaneously.
+              </p>
+            </div>
+            <div class="p-3 bg-[#fafafa] border border-[#ebebeb] rounded-[6px] text-xs flex items-center justify-between">
+              <span class="font-sans text-[#8f8f8f]">Outcome:</span>
+              <span class="font-mono text-[#10b981] font-medium">Programmatic Settlement</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         4. ACTUAL PROOF SPECIMEN & CRITERIA VERIFICATION
+         Laboratory specimen showing deterministic pytest assertions + Gemini reasoning.
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <section class="py-24 border-b border-[#ebebeb] bg-[#fafafa]">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-12">
+        
+        <div class="flex flex-col gap-3">
+          <span class="type-mono-eyebrow text-[#8f8f8f]">§ 3.0 // DUAL-LAYER EVIDENCE</span>
+          <h2 class="type-heading-lg max-w-2xl">Deterministic assertions meet structured reasoning.</h2>
+          <p class="type-body-lg max-w-2xl">
+            Neither unit tests alone nor LLMs alone are sufficient. TrancheLock couples isolated sandboxed test runs with structured Gemini criteria analysis.
+          </p>
+        </div>
+
+        <!-- Specimen Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Specimen A: Pytest Deterministic Assertion Evidence -->
+          <div class="bg-white border border-[#ebebeb] rounded-[12px] p-6 flex flex-col gap-4 shadow-whisper">
+            <div class="flex items-center justify-between border-b border-[#ebebeb] pb-3">
+              <span class="type-label-sm">1. Sandboxed Test Runner</span>
+              <span class="font-mono text-xs text-[#10b981]">8 PASSED (0.42s)</span>
+            </div>
+            <p class="type-body-sm">
+              Acceptance tests execute inside an isolated sandbox runner with process timeout and stripped environment variables. Exit code 0 is mandatory.
+            </p>
+            <div class="code-block-surface p-4 text-xs font-mono text-[#171717] overflow-x-auto leading-relaxed">
+              tests/test_milestone_1.py::test_database_schema_initialization <span class="text-[#10b981]">PASSED</span><br/>
+              tests/test_milestone_1.py::test_authorization_token_validation <span class="text-[#10b981]">PASSED</span><br/>
+              tests/test_milestone_1.py::test_rate_limiting_enforcement <span class="text-[#10b981]">PASSED</span><br/>
+              tests/test_milestone_1.py::test_deterministic_receipt_generation <span class="text-[#10b981]">PASSED</span><br/>
+              <span class="text-[#8f8f8f] pt-2 block">======================== 8 passed in 0.42s ========================</span>
+            </div>
+          </div>
+
+          <!-- Specimen B: Gemini Structured Criteria Verification -->
+          <div class="bg-white border border-[#ebebeb] rounded-[12px] p-6 flex flex-col gap-4 shadow-whisper">
+            <div class="flex items-center justify-between border-b border-[#ebebeb] pb-3">
+              <span class="type-label-sm">2. Structured AI Interpretation</span>
+              <span class="font-mono text-xs text-[#171717]">CRITERIA VERIFIED</span>
+            </div>
+            <p class="type-body-sm">
+              Gemini inspects the git diff, commit history, and test logs against the natural language specification to prevent mock test cheats.
+            </p>
+            <div class="code-block-surface p-4 text-xs font-mono text-[#171717] overflow-x-auto leading-relaxed">
+              &#123;<br/>
+              &nbsp;&nbsp;"verdict": <span class="text-[#10b981]">"VERIFIED"</span>,<br/>
+              &nbsp;&nbsp;"milestone_index": 0,<br/>
+              &nbsp;&nbsp;"test_suite_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",<br/>
+              &nbsp;&nbsp;"reasoning": "Database schema correctly initializes with multi-tenant isolation. No mocked bypasses detected.",<br/>
+              &nbsp;&nbsp;"authorized_amount": 50000000<br/>
+              &#125;
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         5. FAILURE, RETRY & TIMELOCK CLAWBACK
+         What happens if the agent fails or gets stuck.
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <section class="py-24 border-b border-[#ebebeb]">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-12">
+        
+        <div class="flex flex-col gap-3">
+          <span class="type-mono-eyebrow text-[#8f8f8f]">§ 4.0 // FAILURE & RECOVERY</span>
+          <h2 class="type-heading-lg max-w-2xl">What happens when autonomous code fails?</h2>
+          <p class="type-body-lg max-w-2xl">
+            Autonomous workflows are non-deterministic. TrancheLock enforces that failed runs never leak money, while providing mathematical recovery.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div class="p-6 bg-white border border-[#ebebeb] rounded-[12px] flex flex-col gap-3 shadow-whisper">
+            <span class="font-sans text-xs font-medium text-[#171717] uppercase tracking-wider">Step 1 // Rejection</span>
+            <div class="type-label-sm">Zero Signatures Emitted</div>
+            <p class="type-body-sm">
+              If an assertion fails, the verifier aborts immediately. No Ed25519 signature is produced. The Solana program rejects release attempts without the cryptographic instruction.
+            </p>
+          </div>
+
+          <div class="p-6 bg-white border border-[#ebebeb] rounded-[12px] flex flex-col gap-3 shadow-whisper">
+            <span class="font-sans text-xs font-medium text-[#171717] uppercase tracking-wider">Step 2 // Retry Loop</span>
+            <div class="type-label-sm">Agent Fixes & Re-submits</div>
+            <p class="type-body-sm">
+              The agent inspects test failure telemetry, commits a patch branch, and requests re-verification. Already released tranches remain unconditionally untouched.
+            </p>
+          </div>
+
+          <div class="p-6 bg-white border border-[#ebebeb] rounded-[12px] flex flex-col gap-3 shadow-whisper">
+            <span class="font-sans text-xs font-medium text-[#171717] uppercase tracking-wider">Step 3 // Timelock Clawback</span>
+            <div class="type-label-sm">Sponsor Escrow Recovery</div>
+            <p class="type-body-sm">
+              If the agent stalls past the committed <code>expires_at</code> timestamp, the sponsor executes an onchain clawback. All unreleased capital refunds automatically.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         6. FORMAL SECURITY INVARIANTS LEDGER PREVIEW
+         22 formal invariants verified against onchain Solana program.
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <section class="py-24 border-b border-[#ebebeb] bg-[#fafafa]">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col gap-8">
+        
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex flex-col gap-2">
+            <span class="type-mono-eyebrow text-[#8f8f8f]">§ 5.0 // FORMAL SPECIFICATION</span>
+            <h2 class="type-heading-lg">22 Verified Security Invariants</h2>
+          </div>
+
+          <a href="/security" class="btn-square-ghost">
+            View Complete Audit Paper &rarr;
+          </a>
+        </div>
+
+        <div class="bg-white border border-[#ebebeb] rounded-[12px] divide-y divide-[#ebebeb] shadow-whisper">
+          
+          <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <span class="pixel-square text-xs text-[#8f8f8f]">01</span>
+              <div>
+                <span class="font-mono text-xs font-medium text-[#171717]">test_valid_initialization</span>
+                <p class="type-body-sm">Vault PDA initializes with exact multi-tranche allocations and bump integrity.</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-mono font-semibold text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/20">PASS</span>
+          </div>
+
+          <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <span class="pixel-square text-xs text-[#8f8f8f]">02</span>
+              <div>
+                <span class="font-mono text-xs font-medium text-[#171717]">test_valid_tranche_release</span>
+                <p class="type-body-sm">Valid Ed25519 signature immediately releases tranche funds to designated agent token account.</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-mono font-semibold text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/20">PASS</span>
+          </div>
+
+          <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <span class="pixel-square text-xs text-[#8f8f8f]">17</span>
+              <div>
+                <span class="font-mono text-xs font-medium text-[#171717]">test_ed25519_instruction_not_immediately_before_release</span>
+                <p class="type-body-sm">Rejects Ed25519 instruction positioned anywhere other than current_index - 1 in transaction sysvar.</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-mono font-semibold text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/20">PASS</span>
+          </div>
+
+          <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <span class="pixel-square text-xs text-[#8f8f8f]">22</span>
+              <div>
+                <span class="font-mono text-xs font-medium text-[#171717]">test_replay_same_signature</span>
+                <p class="type-body-sm">Replaying an identical signature transaction fails on current_tranche state increment check.</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-mono font-semibold text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/20">PASS</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         7. CTA BAND (EXACT VERCEL DESIGN.MD CTA-BAND)
+         display-xl typography, padding-4xl, marketing pill button.
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <section class="py-28 bg-white border-b border-[#ebebeb] text-center">
+      <div class="max-w-[768px] mx-auto px-4 sm:px-6 flex flex-col items-center gap-6">
+        <span class="type-mono-eyebrow text-[#8f8f8f]">INTERACTIVE PROTOCOL TOUR</span>
+        
+        <h2 class="type-display-xl">
+          Deploy capital into autonomous software with mathematical safety.
+        </h2>
+
+        <p class="type-body-lg max-w-xl">
+          Experience the 90-second interactive lifecycle demo showcasing real milestone execution, failure rejection, and instant Solana Devnet settlement.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+          <a href="/demo" class="btn-pill-primary">
+            Run 90s Lifecycle Demo &rarr;
+          </a>
+
+          <a href="/app" class="btn-pill-secondary">
+            Inspect Active Vaults
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

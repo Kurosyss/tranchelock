@@ -1,0 +1,246 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Badge from '../components/ui/Badge.astro';
+import Button from '../components/ui/Button.astro';
+import CopyButton from '../components/ui/CopyButton.astro';
+
+import { KNOWN_DEVNET_VAULTS, getProtocolMetrics, PROGRAM_ID } from '../data/solana';
+
+const vaults = KNOWN_DEVNET_VAULTS;
+const metrics = getProtocolMetrics(vaults);
+---
+
+<Layout title="Vault Registry // TRANCHELOCK">
+  <Header />
+
+  <main class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-12 flex flex-col gap-10">
+    <!-- Breadcrumb & Protocol Status Strip -->
+    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#ebebeb] pb-4">
+      <div class="flex items-center gap-2 font-sans text-xs">
+        <a href="/" class="text-[#8f8f8f] hover:text-[#171717] transition-colors">TRANCHELOCK</a>
+        <span class="text-[#ebebeb]">/</span>
+        <span class="text-[#171717] font-medium">ESCROW VAULT REGISTRY</span>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs text-[#8f8f8f]">
+        <span class="inline-flex items-center gap-1.5 font-mono">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+          <span class="text-[11px] text-[#171717]">SYSVAR INTROSPECTION ENFORCED</span>
+        </span>
+        <span class="text-[#ebebeb]">|</span>
+        <span><span class="font-sans text-[#8f8f8f]">Oracle:</span> <code class="font-mono text-[#171717]">HyiP6t...RWVG</code></span>
+      </div>
+    </div>
+
+    <!-- Title & Action -->
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span class="type-mono-eyebrow text-[#8f8f8f]">Onchain State Monitor</span>
+          <h1 class="type-heading-lg pt-1">
+            Escrow Vaults
+          </h1>
+          <p class="type-body-md pt-1">
+            Live Devnet registry of programmable milestone escrows settling autonomous agent work on Solana.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="/demo" class="btn-square-primary font-sans text-xs font-medium">
+            Run 90s Lifecycle Demo &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Protocol Summary Metrics Tiles (DESIGN.md Level-0 Hairline) -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] shadow-whisper flex flex-col gap-1">
+          <span class="type-mono-eyebrow text-[#8f8f8f]">TOTAL VALUE LOCKED</span>
+          <div class="text-2xl font-semibold pixel-circle text-[#171717] tracking-tight mt-0.5">{metrics.tvl} <span class="text-xs font-sans text-[#8f8f8f] font-normal">{metrics.settlementToken}</span></div>
+          <span class="text-xs font-sans text-[#8f8f8f]">{vaults.length} Devnet Escrows</span>
+        </div>
+
+        <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] shadow-whisper flex flex-col gap-1">
+          <span class="type-mono-eyebrow text-[#8f8f8f]">CAPITAL SETTLED</span>
+          <div class="text-2xl font-semibold pixel-circle text-[#10b981] tracking-tight mt-0.5">{metrics.capitalSettled} <span class="text-xs font-sans text-[#8f8f8f] font-normal">{metrics.settlementToken}</span></div>
+          <span class="text-xs font-sans text-[#8f8f8f]">{metrics.verifiedTranches} Verified Tranches</span>
+        </div>
+
+        <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] shadow-whisper flex flex-col gap-1">
+          <span class="type-mono-eyebrow text-[#8f8f8f]">FORMAL INVARIANTS</span>
+          <div class="text-2xl font-semibold pixel-square text-[#171717] tracking-tight mt-0.5">22/22 <span class="text-xs font-sans text-[#8f8f8f] font-normal">AUDITED</span></div>
+          <span class="text-xs font-sans text-[#10b981]">100% Invariants Sound</span>
+        </div>
+
+        <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] shadow-whisper flex flex-col gap-1">
+          <span class="type-mono-eyebrow text-[#8f8f8f]">SETTLEMENT TOKEN</span>
+          <div class="text-2xl font-semibold font-sans text-[#171717] tracking-tight mt-0.5 flex items-center gap-1.5">
+            <span>{metrics.settlementToken}</span>
+          </div>
+          <span class="text-xs truncate"><span class="font-sans text-[#8f8f8f]">Mint:</span> <span class="font-mono text-[#171717]">{metrics.tokenMint.slice(0, 6)}...{metrics.tokenMint.slice(-4)}</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter & Search Controls (Category Pills) -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
+      <!-- Category Pills (DESIGN.md rounded-[64px]) -->
+      <div class="inline-flex items-center p-1 rounded-[64px] bg-white border border-[#ebebeb] text-xs font-sans gap-1 shadow-whisper">
+        <button id="filter-all" class="px-4 py-1 rounded-[64px] bg-[#171717] text-white font-medium">
+          All Vaults ({vaults.length})
+        </button>
+        <button id="filter-completed" class="px-4 py-1 rounded-[64px] text-[#4d4d4d] hover:text-[#171717] transition-colors">
+          Completed ({metrics.completedEscrows})
+        </button>
+        <button id="filter-active" class="px-4 py-1 rounded-[64px] text-[#4d4d4d] hover:text-[#171717] transition-colors">
+          Active ({metrics.activeEscrows})
+        </button>
+      </div>
+
+      <!-- Search Box (DESIGN.md rounded-[6px]) -->
+      <div class="relative w-full sm:w-72">
+        <input 
+          id="vault-search-input"
+          type="text" 
+          placeholder="Filter by PDA or wallet address..." 
+          class="w-full h-8 pl-8 pr-3 text-xs font-mono bg-white border border-[#ebebeb] rounded-[6px] text-[#171717] placeholder-[#a1a1a1] focus:outline-none focus:border-[#171717] shadow-whisper"
+        />
+        <svg class="w-3.5 h-3.5 text-[#8f8f8f] absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- High-Density Vault Table (DESIGN.md hairline data table) -->
+    <div class="border border-[#ebebeb] rounded-[8px] bg-white overflow-hidden shadow-whisper">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead>
+            <tr class="border-b border-[#ebebeb] bg-[#fafafa] text-[#8f8f8f] text-[11px]">
+              <th class="py-3 px-4 font-sans font-medium uppercase tracking-wider">Vault PDA / Recipient</th>
+              <th class="py-3 px-4 font-sans font-medium uppercase tracking-wider">Specification / Deliverable</th>
+              <th class="py-3 px-4 font-sans font-medium uppercase tracking-wider">Capital Progress</th>
+              <th class="py-3 px-4 font-sans font-medium uppercase tracking-wider">Status</th>
+              <th class="py-3 px-4 font-sans font-medium uppercase tracking-wider text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#ebebeb]">
+            {vaults.map((vault) => (
+              <tr class="hover:bg-[#fafafa] transition-colors group">
+                <!-- Col 1: Vault PDA & Agent Address -->
+                <td class="py-4 px-4">
+                  <div class="flex flex-col gap-1">
+                    <a href={`/vault/${vault.id}`} class="text-[#171717] hover:text-[#0070f3] font-mono font-medium flex items-center gap-1.5">
+                      <span>{vault.id.slice(0, 8)}...{vault.id.slice(-6)}</span>
+                      <svg class="w-3 h-3 text-[#8f8f8f] group-hover:text-[#0070f3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                    <div class="flex items-center gap-1.5 text-[11px] text-[#8f8f8f]">
+                      <span><span class="font-sans text-[#8f8f8f]">Agent:</span> <span class="font-mono text-[#171717]">{vault.agent.slice(0, 6)}...{vault.agent.slice(-4)}</span></span>
+                      <CopyButton text={vault.agent} label="copy" class="text-[9px] py-0 px-1 font-sans" />
+                    </div>
+                  </div>
+                </td>
+
+                <!-- Col 2: Milestone Title -->
+                <td class="py-4 px-4">
+                  <div class="flex flex-col gap-0.5">
+                    <span class="text-[#171717] font-sans text-xs font-medium">{vault.milestoneName}</span>
+                    <span class="text-[#8f8f8f] text-[11px] font-sans">Updated {vault.timeAgo}</span>
+                  </div>
+                </td>
+
+                <!-- Col 3: Capital & Tranche Progress -->
+                <td class="py-4 px-4">
+                  <div class="flex flex-col gap-1.5 min-w-[160px]">
+                    <div class="flex items-center justify-between text-xs">
+                      <span class="text-[#171717] font-mono font-semibold">{vault.releasedAmount}</span>
+                      <span class="text-[#8f8f8f] font-sans">of <span class="font-mono text-[#171717]">{vault.totalAmount}</span></span>
+                    </div>
+                    <!-- Micro Progress Bar -->
+                    <div class="w-full h-1.5 rounded-full bg-[#f2f2f2] overflow-hidden">
+                      <div 
+                        class={`h-full ${vault.status === 'COMPLETED' ? 'bg-[#10b981]' : 'bg-[#171717]'}`} 
+                        style={`width: ${(vault.tranchesReleased / vault.tranchesTotal) * 100}%`}
+                      ></div>
+                    </div>
+                    <span class="text-[10px] font-sans text-[#8f8f8f]">
+                      {vault.tranchesReleased} of {vault.tranchesTotal} tranches settled
+                    </span>
+                  </div>
+                </td>
+
+                <!-- Col 4: Status Badge -->
+                <td class="py-4 px-4">
+                  <Badge 
+                    variant={vault.badgeVariant} 
+                    size="xs" 
+                    dot={true}
+                  >
+                    {vault.status}
+                  </Badge>
+                </td>
+
+                <!-- Col 5: Action Button -->
+                <td class="py-4 px-4 text-right">
+                  <a 
+                    href={`/vault/${vault.id}`} 
+                    class="btn-square-ghost font-sans text-xs font-medium"
+                  >
+                    Inspect &rarr;
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  if (typeof window !== 'undefined') {
+    const input = document.getElementById('vault-search-input') as HTMLInputElement | null;
+    const filterAll = document.getElementById('filter-all');
+    const filterCompleted = document.getElementById('filter-completed');
+    const filterActive = document.getElementById('filter-active');
+    const rows = document.querySelectorAll<HTMLTableRowElement>('tbody tr');
+
+    let currentFilter = 'all';
+
+    function applyFilters() {
+      const q = (input?.value || '').toLowerCase().trim();
+      rows.forEach(row => {
+        const text = (row.textContent || '').toLowerCase();
+        const statusMatch = currentFilter === 'all' || 
+          (currentFilter === 'completed' && text.includes('completed')) ||
+          (currentFilter === 'active' && text.includes('active'));
+        const queryMatch = !q || text.includes(q);
+        row.style.display = (statusMatch && queryMatch) ? '' : 'none';
+      });
+    }
+
+    input?.addEventListener('input', applyFilters);
+
+    function setFilter(f: string, activeBtn: HTMLElement | null, otherBtns: (HTMLElement | null)[]) {
+      currentFilter = f;
+      activeBtn?.classList.add('bg-[#171717]', 'text-white', 'font-medium');
+      activeBtn?.classList.remove('text-[#4d4d4d]');
+      otherBtns.forEach(b => {
+        b?.classList.remove('bg-[#171717]', 'text-white', 'font-medium');
+        b?.classList.add('text-[#4d4d4d]');
+      });
+      applyFilters();
+    }
+
+    filterAll?.addEventListener('click', () => setFilter('all', filterAll, [filterCompleted, filterActive]));
+    filterCompleted?.addEventListener('click', () => setFilter('completed', filterCompleted, [filterAll, filterActive]));
+    filterActive?.addEventListener('click', () => setFilter('active', filterActive, [filterAll, filterCompleted]));
+  }
+</script>

@@ -1,0 +1,590 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Badge from '../components/ui/Badge.astro';
+import Button from '../components/ui/Button.astro';
+import CopyButton from '../components/ui/CopyButton.astro';
+---
+
+<Layout title="The 90-Second Agent Lifecycle // TRANCHELOCK">
+  <Header />
+
+  <main class="max-w-[1200px] mx-auto px-4 sm:px-6 py-12 flex flex-col gap-8 w-full">
+    <!-- Breadcrumb & Status Strip -->
+    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#ebebeb] pb-4 font-mono text-xs">
+      <div class="flex items-center gap-2">
+        <a href="/" class="text-[#8f8f8f] hover:text-[#171717] transition-colors">TRANCHELOCK</a>
+        <span class="text-[#ebebeb]">/</span>
+        <span class="text-[#171717] font-medium">90-SECOND VERIFIED LIFECYCLE</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono text-[#8f8f8f] bg-white px-2 py-0.5 rounded border border-[#ebebeb]">SOLANA DEVNET</span>
+        <span class="text-[#ebebeb]">|</span>
+        <span class="text-[#10b981] flex items-center gap-1.5 font-mono text-[11px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+          <span>EDUCATIONAL LIFECYCLE REPLAY</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Theatrical Controls Header -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div class="flex flex-col gap-2">
+        <span class="type-mono-eyebrow text-[#8f8f8f]">VERIFIED LIFECYCLE REPLAY</span>
+        <h1 class="type-heading-lg pt-1">
+          The 90-Second Agent Lifecycle
+        </h1>
+        <p class="type-body-md max-w-2xl">
+          Replay the verified Devnet lifecycle from escrow deposit to final settlement: Escrow Deposit &rarr; Agent Submission &rarr; Test Pass &rarr; Bug Rejection &rarr; Patch Fix &rarr; Final Settlement.
+        </p>
+      </div>
+
+      <!-- Playback Controls (Strict DESIGN.md Hierarchy: Primary Next Step vs Secondary Auto-play) -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button 
+          id="btn-prev-step" 
+          class="btn-square-ghost font-sans text-xs"
+        >
+          &larr; Prev
+        </button>
+
+        <button 
+          id="btn-next-step" 
+          class="btn-square-primary font-sans text-xs font-medium"
+        >
+          Next Step &rarr;
+        </button>
+
+        <button 
+          id="btn-autoplay" 
+          class="btn-square-ghost font-sans text-xs font-normal flex items-center gap-1.5"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+          <span>Auto-play 90s Tour</span>
+        </button>
+
+        <button 
+          id="btn-reset" 
+          class="btn-square-ghost text-[#8f8f8f] font-sans text-xs"
+          title="Reset to Step 1"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- 7-Phase Timeline Ribbon with Geist Pixel Numerals -->
+    <div class="p-3 bg-white rounded-[8px] border border-[#ebebeb] shadow-whisper overflow-x-auto">
+      <div class="flex items-center min-w-[760px] justify-between gap-1 text-xs">
+        <!-- 01 FUND -->
+        <div id="phase-node-1" class="phase-node flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#171717] border border-[#171717] text-white font-medium">
+          <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+          <span class="font-mono text-xs"><span class="pixel-square">01</span> FUND</span>
+        </div>
+        <span class="text-[#ebebeb]">&rarr;</span>
+
+        <!-- 02 BUILD -->
+        <div id="phase-node-2" class="phase-node flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#fafafa] border border-[#ebebeb] text-[#8f8f8f]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#a1a1a1]"></span>
+          <span class="font-mono text-xs"><span class="pixel-square">02</span> BUILD</span>
+        </div>
+        <span class="text-[#ebebeb]">&rarr;</span>
+
+        <!-- 03 VERIFY -->
+        <div id="phase-node-3" class="phase-node flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#fafafa] border border-[#ebebeb] text-[#8f8f8f]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#a1a1a1]"></span>
+          <span class="font-mono text-xs"><span class="pixel-square">03</span> VERIFY</span>
+        </div>
+        <span class="text-[#ebebeb]">&rarr;</span>
+
+        <!-- 04 RELEASE -->
+        <div id="phase-node-4" class="phase-node flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#fafafa] border border-[#ebebeb] text-[#8f8f8f]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#a1a1a1]"></span>
+          <span class="font-mono text-xs"><span class="pixel-square">04</span> RELEASE</span>
+        </div>
+        <span class="text-[#ebebeb]">&rarr;</span>
+
+        <!-- 05 FAIL -->
+        <div id="phase-node-5" class="phase-node flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#fafafa] border border-[#ebebeb] text-[#8f8f8f]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#a1a1a1]"></span>
+          <span class="font-mono text-xs"><span class="pixel-square">05</span> FAIL</span>
+        </div>
+        <span class="text-[#ebebeb]">&rarr;</span>
+
+        <!-- 06 FIX -->
+        <div id="phase-node-6" class="phase-node flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#fafafa] border border-[#ebebeb] text-[#8f8f8f]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#a1a1a1]"></span>
+          <span class="font-mono text-xs"><span class="pixel-square">06</span> FIX</span>
+        </div>
+        <span class="text-[#ebebeb]">&rarr;</span>
+
+        <!-- 07 COMPLETE -->
+        <div id="phase-node-7" class="phase-node flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#fafafa] border border-[#ebebeb] text-[#8f8f8f]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#a1a1a1]"></span>
+          <span class="font-mono text-xs"><span class="pixel-square">07</span> SETTLE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Theatrical Stage: Split State vs Terminal -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <!-- Left: State Monitor & Narrative (5 Cols) -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        
+        <!-- Primary State & Narrative Card (PRIMARY STATE -> type-heading-md, EXPLANATION -> readable Sans) -->
+        <div class="p-6 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper flex flex-col gap-3">
+          <div class="flex items-center justify-between border-b border-[#ebebeb] pb-3">
+            <span class="type-mono-eyebrow text-[#8f8f8f]" id="demo-step-label">PHASE 1 // SPONSOR INITIALIZATION</span>
+            <span class="font-sans text-[11px] text-[#8f8f8f]">Step <span id="demo-step-num" class="font-mono text-[#171717] font-medium">1</span> of 7</span>
+          </div>
+          
+          <!-- PRIMARY STATE (DESIGN.md type-heading-md: 20px, 600 weight, -0.4px tracking) -->
+          <h2 class="text-[19px] sm:text-[20px] font-semibold text-[#171717] tracking-tight leading-[26px] pt-0.5" id="demo-step-title">
+            Sponsor locks $100.00 TLUSD in Solana PDA Vault
+          </h2>
+          
+          <!-- EXPLANATION (readable Sans: 13px, 400 weight, leading-relaxed) -->
+          <p class="font-sans text-xs sm:text-[13px] text-[#4d4d4d] leading-relaxed" id="demo-step-description">
+            Sponsor establishes the vault with 2 tranches ($50, $50). Capital is held in escrow under PDA seeds [b"tranche_vault", sponsor, mint]. Funds are 100% committed, securing agent milestone allocation.
+          </p>
+        </div>
+
+        <!-- Programmable Capital Settlement Instrument (MONEY / SETTLEMENT -> strong numeric treatment) -->
+        <div class="p-6 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper flex flex-col gap-6">
+          <div class="flex items-center justify-between border-b border-[#ebebeb] pb-3">
+            <span class="type-mono-eyebrow text-[#8f8f8f]">ONCHAIN ESCROW MUTATION</span>
+            <span class="pixel-square text-[10px] text-[#171717] bg-[#f2f2f2] px-2 py-0.5 rounded border border-[#ebebeb]" id="demo-vault-status-badge">
+              ACTIVE
+            </span>
+          </div>
+
+          <!-- Dynamic Capital Movement Counters -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="flex flex-col">
+              <span class="text-[11px] font-sans font-medium text-[#8f8f8f] uppercase tracking-wider">Vault Locked</span>
+              <div class="pixel-circle text-3xl sm:text-4xl font-semibold text-[#171717] transition-all duration-300 mt-1" id="demo-vault-balance">
+                $100.00
+              </div>
+              <span class="text-[11px] font-sans text-[#8f8f8f] mt-0.5">Solana Escrow PDA</span>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="text-[11px] font-sans font-medium text-[#8f8f8f] uppercase tracking-wider">Agent Wallet</span>
+              <div class="pixel-circle text-3xl sm:text-4xl font-semibold text-[#10b981] transition-all duration-300 mt-1" id="demo-agent-balance">
+                $0.00
+              </div>
+              <span class="text-[11px] font-sans text-[#10b981] font-medium mt-0.5" id="demo-agent-status">Awaiting Verification</span>
+            </div>
+          </div>
+
+          <!-- Milestones Visual Rails (STEP / TECHNICAL DATA -> smaller Mono / metadata) -->
+          <div class="flex flex-col gap-2 pt-2 border-t border-[#ebebeb]">
+            <div class="text-[11px] font-sans font-medium text-[#8f8f8f] uppercase tracking-wider pb-1">Contractual Tranche Schedule</div>
+            
+            <!-- Milestone 1 -->
+            <div id="demo-m1-card" class="p-3 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] flex items-center justify-between transition-colors">
+              <div class="flex items-center gap-2.5">
+                <span class="pixel-square text-xs text-[#8f8f8f]">01</span>
+                <span class="text-[#171717] text-xs font-medium font-sans">Milestone 1: Top-K Parser</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="pixel-circle text-xs font-semibold text-[#171717]">$50.00</span>
+                <span class="text-[10px] font-mono text-[#8f8f8f] bg-white px-1.5 py-0.5 rounded border border-[#ebebeb]" id="demo-m1-badge">
+                  LOCKED
+                </span>
+              </div>
+            </div>
+
+            <!-- Milestone 2 -->
+            <div id="demo-m2-card" class="p-3 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] flex items-center justify-between transition-colors">
+              <div class="flex items-center gap-2.5">
+                <span class="pixel-square text-xs text-[#8f8f8f]">02</span>
+                <span class="text-[#171717] text-xs font-medium font-sans">Milestone 2: Edge Immunity</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="pixel-circle text-xs font-semibold text-[#171717]">$50.00</span>
+                <span class="text-[10px] font-mono text-[#8f8f8f] bg-white px-1.5 py-0.5 rounded border border-[#ebebeb]" id="demo-m2-badge">
+                  LOCKED
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Live Verifier & Solana Terminal (7 Cols) -->
+      <div class="lg:col-span-7 border border-[#ebebeb] rounded-[12px] bg-white overflow-hidden flex flex-col shadow-whisper">
+        <!-- Terminal Bar -->
+        <div class="px-4 py-3 bg-[#fafafa] border-b border-[#ebebeb] flex items-center justify-between text-[#8f8f8f]">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></span>
+            <span class="type-mono-eyebrow text-[#171717] ml-2">VERIFIER RUNTIME // DETERMINISTIC PYTEST + GEMINI</span>
+          </div>
+
+          <span class="text-[10px] font-mono text-[#10b981] font-medium" id="terminal-pulse">VERIFIED REPLAY</span>
+        </div>
+
+        <!-- Terminal Logs Window -->
+        <div 
+          id="demo-terminal-body" 
+          class="p-4 sm:p-5 h-[440px] overflow-y-auto font-mono text-[12px] leading-relaxed flex flex-col gap-1.5 bg-[#fafafa] text-[#4d4d4d]"
+        >
+          <div class="text-[#ebebeb] font-mono select-none">---------------------------------------------------------------------------</div>
+          <div class="text-[#171717] font-mono font-medium">  TRANCHELOCK VERIFICATION HARNESS // 7-PHASE END-TO-END DEMO</div>
+          <div class="text-[#ebebeb] font-mono select-none pb-1">---------------------------------------------------------------------------</div>
+          <div class="flex flex-col gap-1 py-1 text-[11px] sm:text-[12px] border-b border-[#ebebeb]/80">
+            <div><span class="font-mono text-[#8f8f8f]">  Sponsor Wallet:  </span><span class="font-mono text-[#171717]">9cxHstyCEHRAazJJuL3FrpMH6LJsKSPLP5Vouo4yWYwV</span></div>
+            <div><span class="font-mono text-[#8f8f8f]">  Agent Wallet:    </span><span class="font-mono text-[#171717]">3a5rCTRmQ9B74GnietwFSfqKJirEHjqZdEaCMQeSnksP</span></div>
+            <div><span class="font-mono text-[#8f8f8f]">  Vault PDA:       </span><span class="font-mono text-[#171717]">GbkWd144roWeT7uE1KxEJVQ2Wvk3ZV84vLp6hUii6Kno</span></div>
+            <div><span class="font-mono text-[#8f8f8f]">  Verifier Oracle: </span><span class="font-mono text-[#171717]">HyiP6tqPGE9wX6oBNPeS8eBhhsEpKar4VzQphRWVGf5W</span></div>
+            <div><span class="font-mono text-[#8f8f8f]">  Milestone 1 Hash:</span><span class="font-mono text-[#171717]">49bf07f8d8bfe3e4...</span></div>
+            <div><span class="font-mono text-[#8f8f8f]">  Milestone 2 Hash:</span><span class="font-mono text-[#171717]">3c8d0a8a68b5ce08...</span></div>
+          </div>
+          <div class="text-[#10b981] font-mono font-medium pt-2">&gt; Step 1 ready. Click <span class="font-mono text-[#171717] font-semibold">[Next Step &rarr;]</span> or <span class="font-mono text-[#171717] font-semibold">[Auto-play 90s Tour]</span> to begin.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const demoPhases = [
+    {
+      phase: 1,
+      label: "PHASE 1 // SPONSOR INITIALIZATION",
+      title: "Sponsor locks $100.00 TLUSD in Solana PDA Vault",
+      desc: "Sponsor establishes the vault with 2 tranches ($50, $50). Capital is held in escrow under PDA seeds [b'tranche_vault', sponsor, mint]. Funds are 100% committed, securing agent milestone allocation.",
+      vaultBalance: "$100.00",
+      agentBalance: "$0.00",
+      vaultStatus: "ACTIVE",
+      m1Status: "LOCKED",
+      m2Status: "LOCKED",
+      logs: [
+        "--- [STEP 1] SPONSOR INITIALIZES VAULT WITH $100.00 DEVNET TLUSD ESCROW ---",
+        "  [OK] Program ID: 3SBmcsZqGHbLzxrBR2ZzrfSnufHFpzM6GHY6TiijebtM",
+        "  [OK] Vault PDA created on Solana Devnet: GbkWd144roWeT7uE1KxEJVQ2Wvk3ZV84vLp6hUii6Kno",
+        "  [OK] Locked Escrow Balance: $100.00 TLUSD committed",
+        "  [OK] Milestone 1 Hash committed: 49bf07f8...OK",
+        "  [OK] Milestone 2 Hash committed: 3c8d0a8a...OK",
+        "  [OK] Expiration timelock: +24h (Clawback disarmed until expiration)",
+        "  [OK] Status: ACTIVE"
+      ]
+    },
+    {
+      phase: 2,
+      label: "PHASE 2 // AGENT SUBMISSION & BUILD",
+      title: "Autonomous Agent submits branch for Milestone 01",
+      desc: "Agent produces deliverable code (m1_clean.py) implementing top-k frequency parser. Computes SHA-256 submission hash (49bf07f8...). Prepares for sandboxed execution.",
+      vaultBalance: "$100.00",
+      agentBalance: "$0.00",
+      vaultStatus: "ACTIVE",
+      m1Status: "SUBMITTED",
+      m2Status: "LOCKED",
+      logs: [
+        "--- [STEP 2] AGENT SUBMITS CODE FOR MILESTONE 01 ---",
+        "  Agent Public Key: 3a5rCTRmQ9B74GnietwFSfqKJirEHjqZdEaCMQeSnksP",
+        "  Target File: fixtures/agent_submissions/m1_clean.py",
+        "  Git Commit:  a8f9c1e7 (branch: feat/top-k-algorithm)",
+        "  Submission SHA-256: 49bf07f8d8bfe3e46c7ad168c4cf33e9ec49bca0f07fae4b953d34ea9efb8ef1",
+        "  Dispatching task to isolated test runner..."
+      ]
+    },
+    {
+      phase: 3,
+      label: "PHASE 3 // DUAL-LAYER VERIFICATION (PYTEST + GEMINI)",
+      title: "Isolated Sandbox executes tests & Gemini audits criteria",
+      desc: "Deterministic sandbox executes private pytest harness in an isolated subprocess runner. 3/3 tests pass in 0.08s. Gemini 2.5 confirms all natural language acceptance criteria satisfied.",
+      vaultBalance: "$100.00",
+      agentBalance: "$0.00",
+      vaultStatus: "ACTIVE",
+      m1Status: "VERIFIED",
+      m2Status: "LOCKED",
+      logs: [
+        "--- [STEP 3] DUAL-LAYER VERIFICATION RUNTIME ---",
+        "  1. Isolated subprocess runner: stripped env, timeout enforcement...",
+        "  * TEST: test_basic_three_elements PASSED                          [ 33%]",
+        "  * TEST: test_string_elements PASSED                               [ 66%]",
+        "  * TEST: test_return_length PASSED                                [100%]",
+        "  * SUMMARY: ============================== 3 passed in 0.08s ==============================",
+        "  2. Gemini 2.5 structured interpretation: VERIFIED (confidence: 1.0)",
+        "  3. Verifier Oracle signs canonical 153-byte payload with Ed25519 key...",
+        "  Signature: 84725d2b78d2b7579124be30357ea1b5a2bf2a4208e923b72c41c7b5fa3245bb..."
+      ]
+    },
+    {
+      phase: 4,
+      label: "PHASE 4 // SOLANA ED25519 INTROSPECTION & SETTLEMENT",
+      title: "Solana verifies Ed25519 instruction & releases Tranche 0 (+$50.00)",
+      desc: "Solana runtime verifies that the Ed25519 precompile instruction immediately precedes release_tranche. Tranche 0 releases $50.00 TLUSD directly to agent token account.",
+      vaultBalance: "$50.00",
+      agentBalance: "$50.00",
+      vaultStatus: "ACTIVE",
+      m1Status: "RELEASED",
+      m2Status: "LOCKED",
+      logs: [
+        "--- [STEP 4] SOLANA INSTRUCTION INTROSPECTION & DISBURSEMENT ---",
+        "  Executing release_tranche(nonce=1001, milestone_idx=0, amount=50000000)...",
+        "  [OK] Sysvar instruction introspection check: index current - 1 is Ed25519 program",
+        "  [OK] Signature verified onchain: 84725d2b78d2...",
+        "  [OK] Mismatched spec hash check: PASSED",
+        "  [OK] Anti-replay state check: current_tranche incremented to 1",
+        "  Released Amount:  +$50.00 TLUSD -> Agent Wallet",
+        "  Vault Remaining:  $50.00 TLUSD",
+        "  Agent Balance:    $50.00 TLUSD"
+      ]
+    },
+    {
+      phase: 5,
+      label: "PHASE 5 // ADVERSARIAL TEST: FAILED IMPLEMENTATION",
+      title: "Agent submits buggy code (m2_broken.py); Verifier REJECTS",
+      desc: "Agent submits unpatched code with unhandled negative n and empty list cases. Test runner catches 2 uncaught exceptions. Exit code is 1. Verifier issues ZERO signatures.",
+      vaultBalance: "$50.00",
+      agentBalance: "$50.00",
+      vaultStatus: "ACTIVE",
+      m1Status: "RELEASED",
+      m2Status: "FAILED (REJECTED)",
+      logs: [
+        "--- [STEP 5] ADVERSARIAL CASE: AGENT SUBMITS DEFECTIVE CODE ---",
+        "  Target File: fixtures/agent_submissions/m2_broken.py",
+        "  Executing sandbox runner...",
+        "  * TEST: test_n_zero_returns_empty PASSED                          [ 25%]",
+        "  * TEST: test_n_negative_returns_empty FAILED                      [ 50%]",
+        "    >> ValueError: n must be positive (unhandled exception)",
+        "  * TEST: test_empty_list_returns_empty FAILED                      [ 75%]",
+        "    >> IndexError: list index out of range",
+        "  * TEST: test_n_greater_than_unique PASSED                         [100%]",
+        "  * SUMMARY: ==================== 2 failed, 2 passed in 0.09s ====================",
+        "  [!] Sandbox Exit Code: 1 (FAILED)",
+        "  [!] Gemini 2.5 reasoning: Negative n and empty list raised unhandled exceptions.",
+        "  [SECURITY] Signature is NONE. Zero funds authorized. Zero tokens leave vault.",
+        "  Vault Remaining:  $50.00 TLUSD (UNTOUCHED)",
+        "  Agent Balance:    $50.00 TLUSD (UNCHANGED)",
+        "  Diagnostic feedback returned to Agent automatically."
+      ]
+    },
+    {
+      phase: 6,
+      label: "PHASE 6 // AGENT FIXES CODE & RE-EVALUATION SUCCEEDS",
+      title: "Agent patches implementation (m2_fixed.py); All 4 tests pass",
+      desc: "Agent applies boundary guards. Sandbox passes 4/4 tests in 0.09s. Gemini audits criteria satisfied. Oracle issues Ed25519 signature.",
+      vaultBalance: "$50.00",
+      agentBalance: "$50.00",
+      vaultStatus: "ACTIVE",
+      m1Status: "RELEASED",
+      m2Status: "VERIFIED",
+      logs: [
+        "--- [STEP 6] AGENT SUBMITS PATCHED CODE (m2_fixed.py) ---",
+        "  Target File: fixtures/agent_submissions/m2_fixed.py",
+        "  Executing sandbox runner with private test harness...",
+        "  * TEST: test_n_zero_returns_empty PASSED                          [ 25%]",
+        "  * TEST: test_n_negative_returns_empty PASSED                      [ 50%]",
+        "  * TEST: test_empty_list_returns_empty PASSED                      [ 75%]",
+        "  * TEST: test_n_greater_than_unique PASSED                         [100%]",
+        "  * SUMMARY: ============================== 4 passed in 0.09s ==============================",
+        "  [+] Gemini 2.5 confirms all criteria satisfied with exit code 0.",
+        "  [+] Ed25519 Signature generated: ca07843d04768ea9c81938b8160472e3...",
+        "  [+] Solana instruction prepared."
+      ]
+    },
+    {
+      phase: 7,
+      label: "PHASE 7 // FINAL RELEASE & VAULT COMPLETION",
+      title: "Solana disburses remaining $50.00 TLUSD; Vault transitions to COMPLETED",
+      desc: "Final $50.00 TLUSD released to agent wallet. Vault balance reaches $0.00. State machine transitions to COMPLETED. Clawback is permanently disarmed.",
+      vaultBalance: "$0.00",
+      agentBalance: "$100.00",
+      vaultStatus: "COMPLETED",
+      m1Status: "RELEASED",
+      m2Status: "RELEASED",
+      logs: [
+        "--- [STEP 7] SOLANA RELEASES FINAL TRANCHE 1 ($50.00 TLUSD) ---",
+        "  [OK] Solana verifies second Ed25519 instruction immediately preceding release",
+        "  [OK] Nonce: 1003 verified; milestone_idx: 1",
+        "  Released Amount:  +$50.00 TLUSD -> Agent Wallet",
+        "  Vault Remaining:  $0.00 TLUSD",
+        "  Agent Final Total: $100.00 TLUSD (100% of committed capital settled)",
+        "--- [STEP 12] VAULT REACHES FINAL ONCHAIN STATE: COMPLETED ---",
+        "===========================================================================",
+        "  DEMO FINISHED SUCCESSFULLY: ALL 7 PHASES VERIFIED & REPRODUCIBLE",
+        "==========================================================================="
+      ]
+    }
+  ];
+
+  let currentPhaseIdx = 0;
+  let autoplayInterval = null;
+
+  function renderPhase(idx) {
+    currentPhaseIdx = idx;
+    const data = demoPhases[idx];
+
+    const labelEl = document.getElementById("demo-step-label");
+    const titleEl = document.getElementById("demo-step-title");
+    const descEl = document.getElementById("demo-step-description");
+    const stepNumEl = document.getElementById("demo-step-num");
+    if (labelEl) labelEl.textContent = data.label;
+    if (stepNumEl) stepNumEl.textContent = String(data.phase);
+    if (titleEl) titleEl.textContent = data.title;
+    if (descEl) descEl.textContent = data.desc;
+
+    const vaultBalEl = document.getElementById("demo-vault-balance");
+    const agentBalEl = document.getElementById("demo-agent-balance");
+    if (vaultBalEl) vaultBalEl.textContent = data.vaultBalance;
+    if (agentBalEl) agentBalEl.textContent = data.agentBalance;
+
+    const agentStatusEl = document.getElementById("demo-agent-status");
+    if (agentStatusEl) {
+      if (data.agentBalance === "$100.00") {
+        agentStatusEl.textContent = "100% Settled & Inviolable";
+        agentStatusEl.className = "text-[11px] font-sans text-[#10b981] font-medium mt-0.5";
+      } else if (data.agentBalance === "$50.00") {
+        agentStatusEl.textContent = "Tranche 0 Settled (+$50.00)";
+        agentStatusEl.className = "text-[11px] font-sans text-[#10b981] font-medium mt-0.5";
+      } else {
+        agentStatusEl.textContent = "Awaiting Verification";
+        agentStatusEl.className = "text-[11px] font-sans text-[#8f8f8f] mt-0.5";
+      }
+    }
+
+    const vaultBadge = document.getElementById("demo-vault-status-badge");
+    if (vaultBadge) {
+      vaultBadge.textContent = data.vaultStatus;
+      vaultBadge.className = data.vaultStatus === "COMPLETED" 
+        ? "pixel-grid text-[10px] text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/25 font-semibold"
+        : "pixel-square text-[10px] text-[#171717] bg-[#f2f2f2] px-2 py-0.5 rounded border border-[#ebebeb]";
+    }
+
+    const m1Badge = document.getElementById("demo-m1-badge");
+    if (m1Badge) {
+      m1Badge.textContent = data.m1Status;
+      m1Badge.className = data.m1Status === "RELEASED"
+        ? "text-[10px] font-mono text-[#10b981] bg-[#10b981]/10 px-1.5 py-0.5 rounded border border-[#10b981]/25"
+        : "text-[10px] font-mono text-[#8f8f8f] bg-white px-1.5 py-0.5 rounded border border-[#ebebeb]";
+    }
+
+    const m2Badge = document.getElementById("demo-m2-badge");
+    if (m2Badge) {
+      m2Badge.textContent = data.m2Status;
+      m2Badge.className = data.m2Status.includes("FAIL")
+        ? "text-[10px] font-mono text-[#ee0000] bg-[#ee0000]/10 px-1.5 py-0.5 rounded border border-[#ee0000]/25 font-semibold"
+        : data.m2Status === "RELEASED"
+        ? "text-[10px] font-mono text-[#10b981] bg-[#10b981]/10 px-1.5 py-0.5 rounded border border-[#10b981]/25"
+        : "text-[10px] font-mono text-[#8f8f8f] bg-white px-1.5 py-0.5 rounded border border-[#ebebeb]";
+    }
+
+    for (let i = 1; i <= 7; i++) {
+      const node = document.getElementById(`phase-node-${i}`);
+      if (node) {
+        if (i === data.phase) {
+          node.className = "phase-node flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#171717] border border-[#171717] text-white font-medium";
+        } else if (i < data.phase) {
+          node.className = "phase-node flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#10b981]/10 border border-[#10b981]/30 text-[#10b981]";
+        } else {
+          node.className = "phase-node flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#fafafa] border border-[#ebebeb] text-[#8f8f8f]";
+        }
+      }
+    }
+
+    const terminal = document.getElementById("demo-terminal-body");
+    if (terminal) {
+      const separator = document.createElement("div");
+      separator.className = "text-[#ebebeb] pt-2 font-mono";
+      separator.textContent = "---------------------------------------------------------------------------";
+      terminal.appendChild(separator);
+
+      data.logs.forEach(line => {
+        const div = document.createElement("div");
+        if (line.includes("[OK]") || line.includes("PASSED") || line.includes("[+]")) {
+          div.className = "text-[#10b981] font-mono";
+        } else if (line.includes("FAILED") || line.includes("[!]")) {
+          div.className = "text-[#ee0000] font-mono font-medium";
+        } else if (line.includes("---")) {
+          div.className = "text-[#171717] font-mono font-semibold pt-1";
+        } else {
+          div.className = "text-[#4d4d4d] font-mono";
+        }
+        div.textContent = line;
+        terminal.appendChild(div);
+      });
+      terminal.scrollTop = terminal.scrollHeight;
+    }
+  }
+
+  function setupDemo() {
+    const btnNext = document.getElementById("btn-next-step");
+    const btnPrev = document.getElementById("btn-prev-step");
+    const btnReset = document.getElementById("btn-reset");
+    const btnAuto = document.getElementById("btn-autoplay");
+
+    if (btnNext) {
+      btnNext.addEventListener("click", () => {
+        if (currentPhaseIdx < demoPhases.length - 1) {
+          renderPhase(currentPhaseIdx + 1);
+        }
+      });
+    }
+
+    if (btnPrev) {
+      btnPrev.addEventListener("click", () => {
+        if (currentPhaseIdx > 0) {
+          renderPhase(currentPhaseIdx - 1);
+        }
+      });
+    }
+
+    if (btnReset) {
+      btnReset.addEventListener("click", () => {
+        if (autoplayInterval) clearInterval(autoplayInterval);
+        const terminal = document.getElementById("demo-terminal-body");
+        if (terminal) {
+          terminal.innerHTML = `
+            <div class="text-[#ebebeb] font-mono select-none">---------------------------------------------------------------------------</div>
+            <div class="text-[#171717] font-mono font-medium">  TRANCHELOCK VERIFICATION HARNESS // 7-PHASE END-TO-END DEMO</div>
+            <div class="text-[#ebebeb] font-mono select-none pb-1">---------------------------------------------------------------------------</div>
+            <div class="flex flex-col gap-1 py-1 text-[11px] sm:text-[12px] border-b border-[#ebebeb]/80">
+              <div><span class="font-mono text-[#8f8f8f]">  Sponsor Wallet:  </span><span class="font-mono text-[#171717]">9cxHstyCEHRAazJJuL3FrpMH6LJsKSPLP5Vouo4yWYwV</span></div>
+              <div><span class="font-mono text-[#8f8f8f]">  Agent Wallet:    </span><span class="font-mono text-[#171717]">3a5rCTRmQ9B74GnietwFSfqKJirEHjqZdEaCMQeSnksP</span></div>
+              <div><span class="font-mono text-[#8f8f8f]">  Vault PDA:       </span><span class="font-mono text-[#171717]">GbkWd144roWeT7uE1KxEJVQ2Wvk3ZV84vLp6hUii6Kno</span></div>
+              <div><span class="font-mono text-[#8f8f8f]">  Verifier Oracle: </span><span class="font-mono text-[#171717]">HyiP6tqPGE9wX6oBNPeS8eBhhsEpKar4VzQphRWVGf5W</span></div>
+              <div><span class="font-mono text-[#8f8f8f]">  Milestone 1 Hash:</span><span class="font-mono text-[#171717]">49bf07f8d8bfe3e4...</span></div>
+              <div><span class="font-mono text-[#8f8f8f]">  Milestone 2 Hash:</span><span class="font-mono text-[#171717]">3c8d0a8a68b5ce08...</span></div>
+            </div>
+            <div class="text-[#10b981] font-mono font-medium pt-2">&gt; Demo reset. Click <span class="font-mono text-[#171717] font-semibold">[Next Step &rarr;]</span> or <span class="font-mono text-[#171717] font-semibold">[Auto-play 90s Tour]</span> to begin.</div>
+          `;
+        }
+        renderPhase(0);
+      });
+    }
+
+    if (btnAuto) {
+      btnAuto.addEventListener("click", () => {
+        if (autoplayInterval) {
+          clearInterval(autoplayInterval);
+          autoplayInterval = null;
+          btnAuto.innerHTML = "<span class='w-1.5 h-1.5 rounded-full bg-[#10b981]'></span><span>Auto-play 90s Tour</span>";
+          return;
+        }
+
+        btnAuto.innerHTML = "<span class='text-xs'>⏸</span><span>Pause Tour</span>";
+        autoplayInterval = setInterval(() => {
+          if (currentPhaseIdx < demoPhases.length - 1) {
+            renderPhase(currentPhaseIdx + 1);
+          } else {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+            btnAuto.innerHTML = "<span class='w-1.5 h-1.5 rounded-full bg-[#10b981]'></span><span>Auto-play 90s Tour</span>";
+          }
+        }, 3200);
+      });
+    }
+  }
+
+  document.addEventListener("astro:page-load", setupDemo);
+</script>

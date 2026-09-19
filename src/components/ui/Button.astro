@@ -1,0 +1,67 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'marketing-primary' | 'marketing-secondary';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  shape?: 'pill' | 'square' | 'category';
+  pixel?: boolean;
+  href?: string;
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+  id?: string;
+}
+
+const { 
+  variant = 'secondary', 
+  size = 'md', 
+  shape = 'square',
+  pixel = false, 
+  href, 
+  class: className = '',
+  type = 'button',
+  id
+} = Astro.props;
+
+// DESIGN.md Shape Rules:
+// - Marketing CTAs: pill (rounded-[100px])
+// - Nav / App controls: tight square (rounded-[6px])
+// - Category tabs: pill-category (rounded-[64px])
+const shapeClass = 
+  shape === 'pill' ? 'rounded-[100px]' : 
+  shape === 'category' ? 'rounded-[64px]' : 
+  'rounded-[6px]';
+
+const sizeStyles = {
+  xs: 'h-6 px-2 text-[11px] font-sans',
+  sm: 'h-8 px-3 text-xs font-sans',
+  md: 'h-9 px-4 text-xs font-medium font-sans',
+  lg: 'h-10 sm:h-11 px-5 text-sm font-medium font-sans',
+};
+
+const variantStyles = {
+  // Primary: Near-black ink (#171717) with white text
+  primary: 'bg-[#171717] text-white hover:bg-[#333333] border border-transparent font-medium shadow-whisper active:scale-[0.99]',
+  // Secondary: Pure white (#ffffff) with #171717 text and 1px hairline border (#ebebeb)
+  secondary: 'bg-white text-[#171717] hover:bg-[#f2f2f2] border border-[#ebebeb] font-medium shadow-whisper active:scale-[0.99]',
+  // Marketing Primary Pill
+  'marketing-primary': 'bg-[#171717] text-white hover:bg-[#333333] border border-transparent font-medium shadow-whisper active:scale-[0.99]',
+  // Marketing Secondary Pill
+  'marketing-secondary': 'bg-white text-[#171717] hover:bg-[#f2f2f2] border border-[#ebebeb] font-medium shadow-whisper active:scale-[0.99]',
+  // Outline
+  outline: 'bg-transparent text-[#171717] hover:bg-[#f2f2f2] border border-[#ebebeb] font-medium active:scale-[0.99]',
+  // Ghost
+  ghost: 'bg-transparent text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2] border-transparent font-medium',
+};
+
+const fontClass = pixel ? 'font-mono' : 'font-sans';
+const baseClass = `inline-flex items-center justify-center gap-1.5 transition-colors duration-150 cursor-pointer select-none disabled:opacity-40 disabled:pointer-events-none ${shapeClass} ${sizeStyles[size]} ${variantStyles[variant]} ${fontClass} ${className}`;
+---
+
+{href ? (
+  <a href={href} class={baseClass} id={id}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={baseClass} id={id}>
+    <slot />
+  </button>
+)}

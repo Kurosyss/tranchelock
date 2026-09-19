@@ -1,0 +1,36 @@
+{
+  "name": "tranchelock",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "python -m pytest tests/test_all_security_invariants.py -v",
+    "devnet:slice": "tsx scripts/devnet_vertical_slice.ts",
+    "devnet:security": "tsx scripts/devnet_clawback_and_security.ts"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.3",
+    "lucide-react": "^1.47.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "allowScripts": {
+    "esbuild": true
+  },
+  "devDependencies": {
+    "@coral-xyz/anchor": "^0.32.1",
+    "@solana/spl-token": "^0.4.15",
+    "@solana/web3.js": "^1.99.0",
+    "@types/bs58": "^4.0.4",
+    "@types/node": "^26.6.2",
+    "bs58": "^6.0.0",
+    "tsx": "^4.23.13",
+    "tweetnacl": "^1.0.3"
+  }
+}

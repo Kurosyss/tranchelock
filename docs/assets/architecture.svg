@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="1100" height="620">
+  <defs>
+    <style>
+      .bg { fill: #fafafa; }
+      .card { fill: #ffffff; stroke: #ebebeb; stroke-width: 1.5; rx: 10px; }
+      .card-header { fill: #f2f2f2; stroke: #ebebeb; stroke-width: 1; }
+      .title-card { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; fill: #171717; letter-spacing: -0.02em; }
+      .eyebrow { font-family: "SF Mono", Menlo, Monaco, Consolas, monospace; font-size: 11px; font-weight: 600; fill: #8f8f8f; letter-spacing: 0.05em; }
+      .text-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 400; fill: #4d4d4d; }
+      .text-mono { font-family: "SF Mono", Menlo, Monaco, Consolas, monospace; font-size: 12px; fill: #171717; }
+      .text-highlight { font-family: "SF Mono", Menlo, Monaco, Consolas, monospace; font-size: 12px; font-weight: 600; fill: #0070f3; }
+      .arrow { stroke: #a1a1a1; stroke-width: 1.5; fill: none; stroke-dasharray: 4,4; }
+      .arrow-solid { stroke: #171717; stroke-width: 2; fill: none; }
+      .arrow-blue { stroke: #0070f3; stroke-width: 2; fill: none; }
+      .tag { fill: #eef6ff; stroke: #b6d8ff; stroke-width: 1; rx: 4px; }
+      .tag-text { font-family: "SF Mono", Menlo, Monaco, Consolas, monospace; font-size: 10px; font-weight: 600; fill: #0070f3; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#171717" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0070f3" />
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1100" height="620" class="bg" />
+  <rect x="12" y="12" width="1076" height="596" rx="12" fill="none" stroke="#ebebeb" stroke-width="1.5" />
+
+  <!-- Diagram Title -->
+  <g transform="translate(48, 48)">
+    <text class="eyebrow">TRANCHELOCK PROTOCOL SPECIFICATION</text>
+    <text y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22px" font-weight="600" fill="#171717" letter-spacing="-0.03em">End-to-End Cryptographic Verification &amp; Release Flow</text>
+  </g>
+
+  <!-- 1. SPONSOR CARD -->
+  <g transform="translate(48, 105)">
+    <rect width="280" height="210" class="card" />
+    <path d="M 0 10 C 0 4.477 4.477 0 10 0 L 270 0 C 275.523 0 280 4.477 280 10 L 280 36 L 0 36 Z" class="card-header" />
+    <text x="16" y="23" class="title-card">1. SPONSOR ESCROW INIT</text>
+    <text x="16" y="62" class="eyebrow">CLIENT / TYPESCRIPT</text>
+    <text x="16" y="86" class="text-body">• Calls <tspan class="text-mono">initialize_vault</tspan></text>
+    <text x="16" y="110" class="text-body">• Deposits $100 TLUSD into PDA</text>
+    <text x="16" y="134" class="text-body">• Commits Milestone 1 &amp; 2 hashes</text>
+    <text x="16" y="156" class="text-mono" font-size="11px" fill="#8f8f8f">  SHA256(spec1), SHA256(spec2)</text>
+    <text x="16" y="186" class="text-body">• Sets immutable <tspan class="text-mono">expires_at</tspan></text>
+  </g>
+
+  <!-- 2. VERIFIER ORACLE CARD -->
+  <g transform="translate(380, 105)">
+    <rect width="340" height="210" class="card" />
+    <path d="M 0 10 C 0 4.477 4.477 0 10 0 L 330 0 C 335.523 0 340 4.477 340 10 L 340 36 L 0 36 Z" class="card-header" />
+    <text x="16" y="23" class="title-card">2. VERIFIER ORACLE PIPELINE</text>
+    <text x="16" y="62" class="eyebrow">OFF-CHAIN / PYTHON VERIFIER</text>
+    <text x="16" y="86" class="text-body">• Checks private test suite SHA-256</text>
+    <text x="16" y="110" class="text-body">• Runs pytest in sandboxed subprocess</text>
+    <text x="16" y="134" class="text-body">• Gemini AI evaluates audit criteria</text>
+    <text x="16" y="158" class="text-body">• Assembles <tspan class="text-highlight">canonical 153-byte payload</tspan></text>
+    <text x="16" y="186" class="text-body">• Ed25519 signs payload with oracle key</text>
+  </g>
+
+  <!-- 3. SOLANA PROGRAM (ON-CHAIN) -->
+  <g transform="translate(48, 360)">
+    <rect width="672" height="210" class="card" />
+    <path d="M 0 10 C 0 4.477 4.477 0 10 0 L 662 0 C 667.523 0 672 4.477 672 10 L 672 36 L 0 36 Z" class="card-header" />
+    <text x="16" y="23" class="title-card">3. SOLANA ON-CHAIN PROGRAM — INSTRUCTION INTROSPECTION</text>
+    <text x="16" y="62" class="eyebrow">ANCHOR / RUST PROGRAM (DEVNET)</text>
+    
+    <!-- Step A: Introspection sysvar -->
+    <text x="16" y="88" class="text-mono" font-weight="600">[ix 0] Ed25519Program.verify(oracle_pubkey, canonical_153B, signature)</text>
+    <text x="16" y="112" class="text-mono" font-weight="600">[ix 1] TrancheLock.release_tranche(milestone_idx, submission_hash, nonce)</text>
+    
+    <text x="16" y="142" class="text-body">• Program reads Instructions sysvar at <tspan class="text-mono">current_instruction - 1</tspan></text>
+    <text x="16" y="164" class="text-body">• Reconstructs exact 153B payload from onchain state and asserts byte identity</text>
+    <text x="16" y="186" class="text-body">• Enforces sequential order (<tspan class="text-mono">milestone == current_tranche</tspan>) and replay protection</text>
+  </g>
+
+  <!-- 4. SETTLEMENT / AGENT -->
+  <g transform="translate(770, 230)">
+    <rect width="280" height="230" class="card" />
+    <path d="M 0 10 C 0 4.477 4.477 0 10 0 L 270 0 C 275.523 0 280 4.477 280 10 L 280 36 L 0 36 Z" class="card-header" />
+    <text x="16" y="23" class="title-card">4. ATOMIC DISBURSEMENT</text>
+    <text x="16" y="62" class="eyebrow">TOKEN TRANSFER</text>
+    <text x="16" y="88" class="text-body">• PDA signs SPL token transfer</text>
+    <text x="16" y="112" class="text-body">• <tspan class="text-highlight">+$50.00 TLUSD</tspan> → Agent ATA</text>
+    <text x="16" y="136" class="text-body">• Vault balance decrements</text>
+    <text x="16" y="160" class="text-body">• If expired: <tspan class="text-mono">clawback</tspan> refunds</text>
+    <text x="16" y="180" class="text-mono" font-size="11px" fill="#8f8f8f">  unreleased tranches to Sponsor</text>
+    
+    <g transform="translate(16, 194)">
+      <rect width="130" height="22" class="tag" />
+      <text x="8" y="15" class="tag-text">SETTLED ONCHAIN</text>
+    </g>
+  </g>
+
+  <!-- Connector Lines -->
+  <!-- 1 to 2 -->
+  <line x1="328" y1="210" x2="378" y2="210" class="arrow-solid" marker-end="url(#arrowhead)" />
+  
+  <!-- 2 to 3 -->
+  <path d="M 550 315 L 550 358" class="arrow-blue" marker-end="url(#arrowhead-blue)" />
+
+  <!-- 3 to 4 -->
+  <path d="M 720 460 L 768 380" class="arrow-solid" marker-end="url(#arrowhead)" />
+
+</svg>

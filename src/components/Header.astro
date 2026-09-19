@@ -1,0 +1,85 @@
+---
+import Button from './ui/Button.astro';
+import TrancheLogo from './ui/TrancheLogo.astro';
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/';
+const isApp = pathname.startsWith('/app') || pathname.startsWith('/vault');
+const isDemo = pathname.startsWith('/demo');
+const isDocs = pathname.startsWith('/docs');
+const isSecurity = pathname.startsWith('/security');
+---
+
+<header class="border-b border-[#ebebeb] bg-[#fafafa]/90 backdrop-blur-md sticky top-0 z-50">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+    <!-- Left: Brand -->
+    <div class="flex items-center gap-6">
+      <a href="/" class="flex items-center gap-2.5 font-sans font-semibold tracking-tight text-[#171717] hover:opacity-90 group">
+        <TrancheLogo size={28} class="w-[28px] h-[28px]" />
+        <span class="text-sm font-semibold tracking-tight text-[#171717]">TRANCHELOCK</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-2 text-xs text-[#8f8f8f]">
+        <span class="text-[#ebebeb]">/</span>
+        <span class="text-[12px] font-normal text-[#8f8f8f]">Autonomous Work Settlement</span>
+      </div>
+    </div>
+
+    <!-- Center: Main Navigation (DESIGN.md nav-link) -->
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-sans">
+      <a 
+        href="/" 
+        class={`px-3 py-1.5 rounded-[6px] transition-colors ${isHome ? 'text-[#171717] bg-[#f2f2f2] font-medium' : 'text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2]'}`}
+      >
+        Overview
+      </a>
+      <a 
+        href="/app" 
+        class={`px-3 py-1.5 rounded-[6px] transition-colors ${isApp ? 'text-[#171717] bg-[#f2f2f2] font-medium' : 'text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2]'}`}
+      >
+        Vaults
+      </a>
+      <a 
+        href="/demo" 
+        class={`px-3 py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 ${isDemo ? 'text-[#171717] bg-[#f2f2f2] font-medium' : 'text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2]'}`}
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+        <span>90s Demo</span>
+      </a>
+      <a 
+        href="/docs" 
+        class={`px-3 py-1.5 rounded-[6px] transition-colors ${isDocs ? 'text-[#171717] bg-[#f2f2f2] font-medium' : 'text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2]'}`}
+      >
+        Docs
+      </a>
+      <a 
+        href="/security" 
+        class={`px-3 py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 ${isSecurity ? 'text-[#171717] bg-[#f2f2f2] font-medium' : 'text-[#4d4d4d] hover:text-[#171717] hover:bg-[#f2f2f2]'}`}
+      >
+        <span>Security</span>
+        <span class="text-[10px] font-mono text-[#10b981] bg-[#10b981]/10 px-1 py-0.5 rounded">22</span>
+      </a>
+    </nav>
+
+    <!-- Right: Solana Devnet Indicator + Action CTA -->
+    <div class="flex items-center gap-3">
+      <div class="hidden lg:flex items-center gap-2 text-xs font-mono text-[#8f8f8f] border-r border-[#ebebeb] pr-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+        <span>SOLANA DEVNET</span>
+      </div>
+
+      <Button variant="primary" size="sm" shape="square" href="/demo">
+        Run Demo &rarr;
+      </Button>
+    </div>
+  </div>
+
+  <!-- Mobile Secondary Navigation Bar -->
+  <div class="sm:hidden border-t border-[#ebebeb] px-4 py-2 flex items-center justify-between text-xs font-sans overflow-x-auto gap-2 bg-[#fafafa]">
+    <a href="/" class={`px-2 py-1 rounded-[4px] ${isHome ? 'text-[#171717] bg-[#f2f2f2] font-medium' : 'text-[#4d4d4d]'}`}>Overview</a>
+    <a href="/app" class={`px-2 py-1 rounded-[4px] ${isApp ? 'text-[#171717] bg-[#f2f2f2] font-medium' : 'text-[#4d4d4d]'}`}>Vaults</a>
+    <a href="/demo" class={`px-2 py-1 rounded-[4px] ${isDemo ? 'text-[#171717] bg-[#f2f2f2] font-medium' : 'text-[#4d4d4d]'}`}>Demo</a>
+    <a href="/docs" class={`px-2 py-1 rounded-[4px] ${isDocs ? 'text-[#171717] bg-[#f2f2f2] font-medium' : 'text-[#4d4d4d]'}`}>Docs</a>
+    <a href="/security" class={`px-2 py-1 rounded-[4px] ${isSecurity ? 'text-[#171717] bg-[#f2f2f2] font-medium' : 'text-[#4d4d4d]'}`}>Security</a>
+  </div>
+</header>

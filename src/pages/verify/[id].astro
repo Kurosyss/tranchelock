@@ -1,0 +1,352 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
+import CopyButton from '../../components/ui/CopyButton.astro';
+import { ACTIVE_TOKEN } from '../../config/tokens';
+
+export function getStaticPaths() {
+  return [
+    {
+      params: { id: "proof-m1-49bf07f8" },
+      props: {
+        proof: {
+          id: "proof-m1-49bf07f8",
+          milestoneIdx: 0,
+          milestoneTitle: "Top-K Elements by Frequency",
+          status: "VERIFIED",
+          badgeVariant: "pass" as const,
+          vaultPda: "GbkWd144roWeT7uE1KxEJVQ2Wvk3ZV84vLp6hUii6Kno",
+          agentWallet: "3a5rCTRmQ9B74GnietwFSfqKJirEHjqZdEaCMQeSnksP",
+          oraclePubkey: "HyiP6tqPGE9wX6oBNPeS8eBhhsEpKar4VzQphRWVGf5W",
+          trancheAmount: "$50.00",
+          trancheAmountFormatted: "+$50.00 TLUSD",
+          trancheBaseUnits: "50,000,000",
+          nonce: 1001,
+          gitCommit: "commit a8f9c1e7 (branch: feat/top-k-algorithm)",
+          submissionHash: "49bf07f8d8bfe3e46c7ad168c4cf33e9ec49bca0f07fae4b953d34ea9efb8ef1",
+          specHash: "599965850c0c655d49e6f3df3e48eb2292f763dbd769c362973d404e5414ab2b",
+          sandboxDuration: "0.08s",
+          sandboxEngine: "Isolated Subprocess Runner (Process Timeout // Stripped Env)",
+          exitCode: 0,
+          pytestSummary: "3 passed in 0.08s",
+          tests: [
+            { name: "test_basic_three_elements", duration: "0.02s", result: "PASSED" },
+            { name: "test_string_elements", duration: "0.03s", result: "PASSED" },
+            { name: "test_return_length", duration: "0.03s", result: "PASSED" }
+          ],
+          aiStatus: "PASS",
+          aiModel: "Gemini 2.5 Flash",
+          aiConfidence: 1.0,
+          aiReasoning: "All specified acceptance criteria were tested and successfully passed with an exit code of 0, as confirmed by the test suite execution evidence.",
+          signatureHex: "84725d2b78d2b7579124be30357ea1b5a2bf2a4208e923b72c41c7b5fa3245bb16e133d9f2dfb1f73602187f872c0ca267794025ad51c5f3b7d188701eec950a",
+          solanaTx: "3zUnyYkd8xLySWti5jhZL9xhw6yqx1U6gTHB1bXaPBcnAWvVGFxsoQ3t4C6Ap39Msx6c6NyDsBn23Apati9Zq8bM",
+          bytesPayloadHex: "86a4f1...000000e903000000000000"
+        }
+      }
+    },
+    {
+      params: { id: "proof-m2-3c8d0a8a" },
+      props: {
+        proof: {
+          id: "proof-m2-3c8d0a8a",
+          milestoneIdx: 1,
+          milestoneTitle: "Negative N & Empty List Edge Protection (Patched)",
+          status: "VERIFIED",
+          badgeVariant: "pass" as const,
+          vaultPda: "GbkWd144roWeT7uE1KxEJVQ2Wvk3ZV84vLp6hUii6Kno",
+          agentWallet: "3a5rCTRmQ9B74GnietwFSfqKJirEHjqZdEaCMQeSnksP",
+          oraclePubkey: "HyiP6tqPGE9wX6oBNPeS8eBhhsEpKar4VzQphRWVGf5W",
+          trancheAmount: "$50.00",
+          trancheAmountFormatted: "+$50.00 TLUSD",
+          trancheBaseUnits: "50,000,000",
+          nonce: 1003,
+          gitCommit: "commit 9b4e11f2 (branch: fix/negative-n-guard)",
+          submissionHash: "3c8d0a8a3a291f03ce3e08f23fcfb648fa3910c22fa3dc9027878d6faae7c6ae",
+          specHash: "5845f1cf81751c1c1f061fbb98ea75c401aa99c836ec2ce963c6cf7b02db16db",
+          sandboxDuration: "0.11s",
+          sandboxEngine: "Isolated Subprocess Runner (Process Timeout // Stripped Env)",
+          exitCode: 0,
+          pytestSummary: "4 passed in 0.11s",
+          tests: [
+            { name: "test_basic_three_elements", duration: "0.02s", result: "PASSED" },
+            { name: "test_negative_n_raises_value_error", duration: "0.03s", result: "PASSED" },
+            { name: "test_empty_input_list", duration: "0.03s", result: "PASSED" },
+            { name: "test_return_length", duration: "0.03s", result: "PASSED" }
+          ],
+          aiStatus: "PASS",
+          aiModel: "Gemini 2.5 Flash",
+          aiConfidence: 1.0,
+          aiReasoning: "The updated implementation correctly handles empty lists and raises ValueError on negative n inputs. The deterministic test suite confirms 4/4 passing tests.",
+          signatureHex: "ca07843d04768ea9c81938b8160472e3895e634cb38d4517036a18d17961205307525381ce5b2110e0513e4bfa95e4e83c74384d505165d496a77d29fc2f5509",
+          solanaTx: "HqSU1zEPg4tSQDQHNAWaKm11DoqdyeYBkNC9Yk6MPtVwTsNU1TaosoRr1ocnxSpCCJVxnudfNUVdGcHbg4wBXrg",
+          bytesPayloadHex: "86a4f1...000000ea03000000000000"
+        }
+      }
+    },
+    {
+      params: { id: "proof-m2-broken-failed" },
+      props: {
+        proof: {
+          id: "proof-m2-broken-failed",
+          milestoneIdx: 1,
+          milestoneTitle: "Negative N & Empty List Edge Protection (Unpatched)",
+          status: "REJECTED",
+          badgeVariant: "fail" as const,
+          vaultPda: "GbkWd144roWeT7uE1KxEJVQ2Wvk3ZV84vLp6hUii6Kno",
+          agentWallet: "3a5rCTRmQ9B74GnietwFSfqKJirEHjqZdEaCMQeSnksP",
+          oraclePubkey: "HyiP6tqPGE9wX6oBNPeS8eBhhsEpKar4VzQphRWVGf5W",
+          trancheAmount: "$0.00",
+          trancheAmountFormatted: "$0.00 TLUSD (DISBURSEMENT BLOCKED)",
+          trancheBaseUnits: "0",
+          nonce: 1002,
+          gitCommit: "commit 4a7c22e9 (branch: buggy/unhandled-exceptions)",
+          submissionHash: "failed_attempt_hash_e901f4c7d81234ba",
+          specHash: "5845f1cf81751c1c1f061fbb98ea75c401aa99c836ec2ce963c6cf7b02db16db",
+          sandboxDuration: "0.09s",
+          sandboxEngine: "Isolated Subprocess Runner (Process Timeout // Stripped Env)",
+          exitCode: 1,
+          pytestSummary: "2 failed, 2 passed in 0.09s",
+          tests: [
+            { name: "test_basic_three_elements", duration: "0.02s", result: "PASSED" },
+            { name: "test_negative_n_raises_value_error", duration: "0.03s", result: "FAILED" },
+            { name: "test_empty_input_list", duration: "0.02s", result: "FAILED" },
+            { name: "test_return_length", duration: "0.02s", result: "PASSED" }
+          ],
+          aiStatus: "FAIL",
+          aiModel: "Gemini 2.5 Flash",
+          aiConfidence: 1.0,
+          aiReasoning: "The deterministic test evidence shows an exit code of 1 with two failures out of four tests. Specifically, the test for negative n values and the test for an empty items list both failed with uncaught exceptions, meaning criteria 1 and 2 were not met.",
+          signatureHex: "NONE (REFUSED // ZERO CAPITAL DISBURSED)",
+          solanaTx: "Preflight Blocked (Zero funds authorized, no transaction broadcast)",
+          bytesPayloadHex: "N/A"
+        }
+      }
+    }
+  ];
+}
+
+const { proof } = Astro.props;
+const isVerified = proof.status === 'VERIFIED';
+---
+
+<Layout title={`Verification Instrument // ${proof.id}`}>
+  <Header />
+
+  <main class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-12 flex flex-col gap-10">
+    <!-- Breadcrumb & Instrument Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#ebebeb] pb-4 text-xs">
+      <div class="flex items-center gap-2 font-sans text-xs">
+        <a href="/" class="text-[#8f8f8f] hover:text-[#171717] transition-colors">TRANCHELOCK</a>
+        <span class="text-[#ebebeb]">/</span>
+        <a href="/app" class="text-[#8f8f8f] hover:text-[#171717] transition-colors">VAULTS</a>
+        <span class="text-[#ebebeb]">/</span>
+        <a href={`/vault/${proof.vaultPda}`} class="font-mono text-[#8f8f8f] hover:text-[#171717] transition-colors">{proof.vaultPda.slice(0, 8)}...</a>
+        <span class="text-[#ebebeb]">/</span>
+        <span class="text-[#171717] font-medium">VERIFICATION INSTRUMENT</span>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs">
+        <Badge variant={proof.badgeVariant} size="xs" dot={true}>
+          {proof.status}
+        </Badge>
+        <span class="text-[#ebebeb]">|</span>
+        <span><span class="font-sans text-[#8f8f8f]">Nonce:</span> <span class="font-mono text-[#171717] font-medium">{proof.nonce}</span></span>
+      </div>
+    </div>
+
+    <!-- Title & Telemetry Header Ribbon -->
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+        <div>
+          <span class="type-mono-eyebrow text-[#8f8f8f]">MILESTONE 0{proof.milestoneIdx + 1} VERIFICATION</span>
+          <h1 class="type-heading-lg pt-1">
+            {proof.milestoneTitle}
+          </h1>
+        </div>
+        <span class="text-xs"><span class="font-sans text-[#8f8f8f]">Proof ID:</span> <span class="font-mono text-[#171717]">{proof.id}</span></span>
+      </div>
+
+      <!-- Live Pipeline Telemetry Header Ribbon -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border border-[#ebebeb] rounded-[8px] bg-white divide-y sm:divide-y-0 sm:divide-x divide-[#ebebeb] text-xs shadow-whisper">
+        <div class="p-3.5 flex flex-col gap-1">
+          <span class="font-sans text-[11px] font-medium text-[#8f8f8f] uppercase tracking-wider">Oracle Pubkey</span>
+          <span class="font-mono text-xs text-[#171717] font-medium truncate">{proof.oraclePubkey.slice(0, 8)}...</span>
+        </div>
+        <div class="p-3.5 flex flex-col gap-1">
+          <span class="font-sans text-[11px] font-medium text-[#8f8f8f] uppercase tracking-wider">Sandbox Engine</span>
+          <span class="font-sans text-xs text-[#171717]">Pytest 8.2</span>
+        </div>
+        <div class="p-3.5 flex flex-col gap-1">
+          <span class="font-sans text-[11px] font-medium text-[#8f8f8f] uppercase tracking-wider">Duration</span>
+          <span class="font-mono text-xs text-[#171717]">{proof.sandboxDuration}</span>
+        </div>
+        <div class="p-3.5 flex flex-col gap-1">
+          <span class="font-sans text-[11px] font-medium text-[#8f8f8f] uppercase tracking-wider">Exit Code</span>
+          <span class={proof.exitCode === 0 ? "font-mono text-xs text-[#10b981] font-bold" : "font-mono text-xs text-[#ee0000] font-bold"}>{proof.exitCode}</span>
+        </div>
+        <div class="p-3.5 flex flex-col gap-1">
+          <span class="font-sans text-[11px] font-medium text-[#8f8f8f] uppercase tracking-wider">AI Reasoner</span>
+          <span class="font-sans text-xs text-[#171717]">{proof.aiModel}</span>
+        </div>
+        <div class="p-3.5 flex flex-col gap-1">
+          <span class="font-sans text-[11px] font-medium text-[#8f8f8f] uppercase tracking-wider">Attestation</span>
+          <span class={isVerified ? "font-mono text-xs text-[#10b981] font-medium" : "font-mono text-xs text-[#ee0000] font-medium"}>{isVerified ? "153B ED25519" : "REFUSED"}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         THE 6-STAGE VERIFICATION INSTRUMENT
+         01 INGEST → 02 ISOLATE → 03 EXECUTE → 04 REASON → 05 ATTEST → 06 SETTLE
+         Unified coherent instrument on a clean white surface.
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <div class="bg-white border border-[#ebebeb] rounded-[12px] divide-y divide-[#ebebeb] shadow-whisper overflow-hidden">
+
+      <!-- STAGE 01: INGEST -->
+      <div class="p-6 flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="pixel-square text-xs text-[#8f8f8f]">01</span>
+            <h2 class="type-label-sm uppercase">INGESTION // AGENT DELIVERABLE SUBMISSION</h2>
+          </div>
+          <span class="text-xs font-mono text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/20">
+            HASHED
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-3 bg-[#fafafa] border border-[#ebebeb] rounded-[6px] flex flex-col gap-1">
+            <span class="font-sans text-[11px] font-medium text-[#8f8f8f] uppercase tracking-wider">Git Commit & Branch</span>
+            <span class="font-mono text-xs text-[#171717]">{proof.gitCommit}</span>
+          </div>
+          <div class="p-3 bg-[#fafafa] border border-[#ebebeb] rounded-[6px] flex flex-col gap-1">
+            <span class="font-sans text-[11px] font-medium text-[#8f8f8f] uppercase tracking-wider">SHA-256 Submission Hash</span>
+            <span class="font-mono text-xs text-[#171717] truncate">{proof.submissionHash}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 02: ISOLATE -->
+      <div class="p-6 flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="pixel-square text-xs text-[#8f8f8f]">02</span>
+            <h2 class="type-label-sm uppercase">ISOLATION // DETERMINISTIC SANDBOX RUNNER</h2>
+          </div>
+          <span class="text-xs font-mono text-[#171717] bg-[#f2f2f2] px-2 py-0.5 rounded border border-[#ebebeb]">
+            ISOLATED
+          </span>
+        </div>
+
+        <p class="type-body-md">
+          {proof.sandboxEngine}. Ephemeral directory execution with process timeout, stripped environment variables, and private sponsor assertions.
+        </p>
+      </div>
+
+      <!-- STAGE 03: EXECUTE -->
+      <div class="p-6 flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="pixel-square text-xs text-[#8f8f8f]">03</span>
+            <h2 class="type-label-sm uppercase">EXECUTION // DETERMINISTIC ASSERTIONS</h2>
+          </div>
+          <span class={proof.exitCode === 0 ? "text-xs font-mono text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/20" : "text-xs font-mono text-[#ee0000] bg-[#ee0000]/10 px-2 py-0.5 rounded border border-[#ee0000]/20"}>
+            {proof.pytestSummary}
+          </span>
+        </div>
+
+        <div class="border border-[#ebebeb] rounded-[8px] overflow-hidden">
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="bg-[#fafafa] border-b border-[#ebebeb] text-[#8f8f8f] text-[11px]">
+                <th class="p-3 font-sans font-medium uppercase tracking-wider">Test Case Identifier</th>
+                <th class="p-3 font-sans font-medium uppercase tracking-wider">Duration</th>
+                <th class="p-3 font-sans font-medium uppercase tracking-wider text-right">Result</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#ebebeb]">
+              {proof.tests.map((t) => (
+                <tr class="hover:bg-[#fafafa] transition-colors">
+                  <td class="p-3 font-mono text-xs font-medium text-[#171717]">{t.name}</td>
+                  <td class="p-3 font-mono text-xs text-[#8f8f8f]">{t.duration}</td>
+                  <td class="p-3 text-right">
+                    <span class={t.result === 'PASSED' ? "font-mono text-xs text-[#10b981] font-semibold" : "font-mono text-xs text-[#ee0000] font-semibold"}>
+                      {t.result}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- STAGE 04: REASON -->
+      <div class="p-6 flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="pixel-square text-xs text-[#8f8f8f]">04</span>
+            <h2 class="type-label-sm uppercase">REASONING // GEMINI STRUCTURED CRITERIA INTERPRETATION</h2>
+          </div>
+          <span class={proof.aiStatus === 'PASS' ? "text-xs font-mono text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/20" : "text-xs font-mono text-[#ee0000] bg-[#ee0000]/10 px-2 py-0.5 rounded border border-[#ee0000]/20"}>
+            CRITERIA: {proof.aiStatus}
+          </span>
+        </div>
+
+        <div class="p-4 bg-[#fafafa] border border-[#ebebeb] rounded-[6px] text-sm font-sans text-[#171717] leading-relaxed">
+          {proof.aiReasoning}
+        </div>
+      </div>
+
+      <!-- STAGE 05: ATTEST -->
+      <div class="p-6 flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="pixel-square text-xs text-[#8f8f8f]">05</span>
+            <h2 class="type-label-sm uppercase">ATTESTATION // CANONICAL 153-BYTE SERIALIZATION</h2>
+          </div>
+          <span class="text-xs font-mono text-[#171717] bg-[#f2f2f2] px-2 py-0.5 rounded border border-[#ebebeb]">
+            {isVerified ? "SIGNED" : "REFUSED"}
+          </span>
+        </div>
+
+        <div class="p-4 code-block-surface text-xs leading-relaxed break-all">
+          <span class="font-sans text-[11px] text-[#8f8f8f] block mb-1">Ed25519 Signature:</span>
+          <div class="font-mono text-xs text-[#171717]">{proof.signatureHex}</div>
+        </div>
+      </div>
+
+      <!-- STAGE 06: SETTLE (THE SETTLEMENT MOMENT WITH GEIST PIXEL) -->
+      <div class="p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 bg-[#fafafa]">
+        <div class="flex flex-col gap-1">
+          <span class="type-mono-eyebrow text-[#8f8f8f]">06 // SETTLEMENT MOMENT</span>
+          <div class="flex items-center gap-3">
+            <span class="pixel-circle text-3xl sm:text-4xl font-semibold text-[#171717]">
+              {proof.trancheAmountFormatted}
+            </span>
+            <span class={isVerified ? "pixel-grid text-xs text-[#10b981] bg-[#10b981]/15 px-2.5 py-1 rounded border border-[#10b981]/30" : "pixel-grid text-xs text-[#ee0000] bg-[#ee0000]/15 px-2.5 py-1 rounded border border-[#ee0000]/30"}>
+              {isVerified ? "SETTLED" : "BLOCKED"}
+            </span>
+          </div>
+        </div>
+
+        {isVerified && (
+          <a 
+            href={`https://explorer.solana.com/tx/${proof.solanaTx}?cluster=devnet`} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="btn-square-primary"
+          >
+            View Solana Devnet Transaction &rarr;
+          </a>
+        )}
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
