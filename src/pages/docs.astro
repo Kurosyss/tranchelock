@@ -30,7 +30,7 @@ import { DEVNET_TLUSD, OFFICIAL_DEVNET_USDC } from '../config/tokens';
     <!-- Docs Layout: Sticky Technical Sidebar + Narrow Reading Content Body -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
       <!-- Sticky Sidebar -->
-      <aside class="lg:col-span-3 sticky top-20 flex flex-col gap-4 font-sans text-sm border-r border-[#ebebeb] pr-6">
+      <aside class="lg:col-span-3 static lg:sticky lg:top-20 flex flex-col gap-4 font-sans text-sm border-b lg:border-b-0 lg:border-r border-[#ebebeb] pb-8 lg:pb-0 pr-0 lg:pr-6">
         <span class="type-mono-eyebrow text-[#8f8f8f]">SPEC SECTIONS</span>
         <nav id="docs-sidebar-nav" class="flex flex-col gap-1 text-xs font-sans">
           <a href="#overview" class="docs-nav-link px-3 py-1.5 rounded-[6px] bg-[#171717] text-white font-medium transition-colors block">1. Architectural Topology</a>
@@ -51,7 +51,7 @@ import { DEVNET_TLUSD, OFFICIAL_DEVNET_USDC } from '../config/tokens';
       </aside>
 
       <!-- Main Docs Content Area (Narrow, highly readable column container-docs) -->
-      <div class="lg:col-span-9 max-w-[768px] flex flex-col gap-16 text-sm text-[#4d4d4d] leading-relaxed">
+      <div class="lg:col-span-9 max-w-[768px] w-full min-w-0 flex flex-col gap-16 text-sm text-[#4d4d4d] leading-relaxed">
         
         <!-- 1. Protocol Architecture -->
         <section id="overview" class="flex flex-col gap-6 scroll-mt-24">
@@ -206,7 +206,7 @@ pub struct TrancheVault &#123;
             Solana transactions executing <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">release_tranche</code> must contain an <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">Ed25519SigVerify</code> precompile instruction <strong class="text-[#171717] font-medium">immediately preceding</strong> the release instruction:
           </p>
           <ul class="list-disc pl-5 flex flex-col gap-2 type-body-md text-[#4d4d4d]">
-            <li><code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">load_current_index_checked(&instructions_sysvar)?</code> confirms current instruction position.</li>
+            <li><code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717] break-all">load_current_index_checked(&instructions_sysvar)?</code> confirms current instruction position.</li>
             <li>Verifies instruction <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">current_index - 1</code> is native <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">ed25519_program::ID</code>.</li>
             <li>Verifies data header specifies <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">num_signatures == 1</code>.</li>
             <li>Matches oracle public key bytes against <code class="font-mono text-xs bg-[#f2f2f2] px-1.5 py-0.5 rounded border border-[#ebebeb] text-[#171717]">vault.verifier_oracle</code>.</li>

@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Risk Disclosure // TRANCHELOCK" description="Risk disclosure and technical assumptions for TrancheLock. Honest breakdown of smart contract, oracle, sandbox, and Devnet prototype limitations.">
+  <Header />
+
+  <main class="w-full max-w-[1000px] mx-auto px-4 sm:px-6 py-12 flex flex-col gap-10 text-[#4d4d4d]">
+    <!-- Header Block -->
+    <div class="border-b border-[#ebebeb] pb-8 flex flex-col gap-3">
+      <div class="flex items-center gap-2 text-xs font-mono text-[#8f8f8f]">
+        <span class="type-mono-eyebrow text-[#171717]">TECHNICAL DISCLOSURE</span>
+        <span>•</span>
+        <span>REVISION 1.0</span>
+        <span>•</span>
+        <span>SEPTEMBER 2026</span>
+      </div>
+      <h1 class="type-heading-lg pt-1 text-[#171717]">
+        Risk Disclosure & Protocol Assumptions
+      </h1>
+      <p class="type-body-lg max-w-3xl">
+        TrancheLock is an experimental milestone escrow protocol designed for autonomous agent development. This document provides an honest, technical disclosure of the architectural boundaries, security assumptions, and risks of the current prototype.
+      </p>
+    </div>
+
+    <!-- Section 1: Experimental Smart Contract & Audit Status -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 1.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Smart Contract State & Absence of Formal Audit</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        The TrancheLock Solana program is experimental software. While the core state machine has been verified through a suite of 22 automated invariant tests covering instruction introspection, replay protection, and timelock boundaries:
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-2.5 shadow-whisper">
+        <ul class="list-disc pl-5 flex flex-col gap-2 text-[#4d4d4d]">
+          <li><strong class="text-[#171717] font-medium">No External Security Audit:</strong> TrancheLock has not undergone a formal third-party smart contract security audit by an independent auditing firm.</li>
+          <li><strong class="text-[#171717] font-medium">No Mainnet Deployment:</strong> The contracts are not deployed to Solana Mainnet-Beta. They are strictly deployed to Solana Devnet for research and demonstration purposes.</li>
+          <li><strong class="text-[#171717] font-medium">Potential Edge-Case Bugs:</strong> Smart contract programs may contain unforeseen logic defects, arithmetic edge cases, or Anchor deserialization vulnerabilities that could cause unrecoverable vault lockups.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 2: Devnet Limitations & Test Tokens -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 2.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Solana Devnet Environment & Test Tokens</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        The protocol currently operates exclusively on the public Solana Devnet test environment:
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+          <span class="type-label-sm text-[#171717]">Zero Monetary Value (TLUSD)</span>
+          <p class="type-body-sm text-[#4d4d4d]">
+            The settlement token used in all live vaults (<code class="font-mono text-xs text-[#171717]">TLUSD</code>) is a Devnet test mint created solely to demonstrate multi-tranche escrow accounting. TLUSD has zero real-world economic value. Real funds must never be deposited.
+          </p>
+        </div>
+        <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+          <span class="type-label-sm text-[#171717]">Devnet Instability & State Wipes</span>
+          <p class="type-body-sm text-[#4d4d4d]">
+            Solana Devnet nodes can be restarted, rate-limited, or wiped by the validator community without notice. Transactions or vault records on Devnet may disappear or experience severe RPC latency.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Verifier Oracle & Key Management -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 3.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Verifier Oracle & Cryptographic Dependency</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        Milestone fund releases require an Ed25519 pre-instruction signed by an authorized verifier oracle key (<code class="font-mono text-xs bg-[#f2f2f2] px-1 py-0.5 rounded text-[#171717]">HyiP6tqP...</code>):
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-2.5 shadow-whisper">
+        <ul class="list-disc pl-5 flex flex-col gap-2 text-[#4d4d4d]">
+          <li><strong class="text-[#171717] font-medium">Off-Chain Key Operational Risk:</strong> If the verifier's private signing key were compromised, an attacker could sign false release certificates for incomplete milestones.</li>
+          <li><strong class="text-[#171717] font-medium">Verifier Liveness & Downtime:</strong> If the off-chain verifier daemon becomes unavailable or fails to execute evaluation jobs, agents cannot trigger milestone releases. In this scenario, sponsors must wait until the vault's slot-based timelock expires to execute an automated clawback refund.</li>
+          <li><strong class="text-[#171717] font-medium">Pre-Instruction Introspection:</strong> The on-chain contract enforces cryptographic proof through Solana's <code class="font-mono text-xs text-[#171717]">Instructions</code> sysvar introspection, verifying that the Ed25519 signature verified in slot 0 matches the exact 153-byte payload for that vault and tranche index.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 4: Sandbox Isolation Limitations -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 4.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Sandbox Isolation Boundaries & Untrusted Code</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        Autonomous coding agents submit arbitrary source code repositories to be evaluated against sponsor test suites. We explicitly disclose our sandbox implementation parameters:
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-3 shadow-whisper">
+        <div class="flex items-center gap-2 text-xs font-mono text-[#8f8f8f]">
+          <span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>
+          <span class="uppercase tracking-wider text-[#171717] font-medium">Honest Sandbox Disclosure</span>
+        </div>
+        <p class="text-[#4d4d4d] leading-relaxed">
+          The current demonstration sandbox runs via <strong class="text-[#171717]">application-level subprocess isolation</strong> with execution timeouts, isolated scratch working directories, and stripped process environments. It is <strong class="text-[#171717]">NOT</strong> an OS-level cgroup kernel sandbox, gVisor container, or hypervisor-enforced microVM (e.g. Firecracker).
+        </p>
+        <p class="text-xs text-[#4d4d4d] leading-relaxed">
+          While suitable for Devnet evaluation and benign coding tasks, executing malicious or adversarial agent submissions outside of virtualization primitives poses local host security risks. Production deployments would require hardware-isolated or microVM sandboxes with hard network egress restrictions.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 5: Sponsor Spec Suite & AI Reasoning Dependencies -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 5.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Sponsor Specification Suites & AI Evaluation</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        TrancheLock verifies milestones by hashing the sponsor's test suite (<code class="font-mono text-xs bg-[#f2f2f2] px-1 py-0.5 rounded text-[#171717]">SHA-256</code>) and evaluating test output with Pytest and Gemini 2.5 Flash:
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+          <span class="type-label-sm text-[#171717]">Trivial or Flawed Tests</span>
+          <p class="type-body-sm text-[#4d4d4d]">
+            The protocol cannot verify the semantic quality of tests written by sponsors. If a sponsor specifies weak or incomplete assertions, an autonomous agent may pass all checks without delivering genuine functional utility.
+          </p>
+        </div>
+        <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+          <span class="type-label-sm text-[#171717]">Model Evaluation Variance</span>
+          <p class="type-body-sm text-[#4d4d4d]">
+            Secondary verification stages that rely on LLM reasoning over test execution traces are subject to potential model non-determinism, prompt injection in code comments, or API provider outages.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Timelock Expiration & Clawback Boundaries -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 6.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Timelock Expiration & Network Availability</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        TrancheLock vaults include slot-based timelock boundaries (<code class="font-mono text-xs bg-[#f2f2f2] px-1 py-0.5 rounded text-[#171717]">timelock_slot</code>) allowing sponsors to claw back unreleased funds if an agent fails to deliver before deadline:
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-2.5 shadow-whisper">
+        <ul class="list-disc pl-5 flex flex-col gap-1.5 text-[#4d4d4d]">
+          <li><strong class="text-[#171717] font-medium">Slot Progression Variance:</strong> Solana slot timestamps can fluctuate slightly due to validator performance and network congestion. Exact wall-clock expiration depends on continuous slot processing.</li>
+          <li><strong class="text-[#171717] font-medium">Clawback Priority:</strong> Once the timelock slot is reached or exceeded, a sponsor can trigger a clawback instruction at any time before the verifier release transaction is confirmed on-chain.</li>
+          <li><strong class="text-[#171717] font-medium">RPC Node Availability:</strong> Interaction with the frontend depends on Solana RPC endpoint responsiveness. In periods of high network load, users may experience submission delays.</li>
+        </ul>
+      </div>
+      <div class="pt-2 text-xs text-[#8f8f8f]">
+        <span class="font-sans">Architecture Specifications:</span> <a href="/docs" class="font-mono text-[#171717] hover:underline">/docs</a>
+        <span class="mx-2">•</span>
+        <span class="font-sans">Invariant Verification:</span> <a href="/security" class="font-mono text-[#171717] hover:underline">/security</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

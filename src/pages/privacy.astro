@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Privacy Policy // TRANCHELOCK" description="Privacy policy for TrancheLock. Transparent explanation of data practices for our experimental, non-custodial Solana Devnet prototype.">
+  <Header />
+
+  <main class="w-full max-w-[1000px] mx-auto px-4 sm:px-6 py-12 flex flex-col gap-10 text-[#4d4d4d]">
+    <!-- Header Block -->
+    <div class="border-b border-[#ebebeb] pb-8 flex flex-col gap-3">
+      <div class="flex items-center gap-2 text-xs font-mono text-[#8f8f8f]">
+        <span class="type-mono-eyebrow text-[#171717]">TRANSPARENCY & PRIVACY</span>
+        <span>•</span>
+        <span>REVISION 1.0</span>
+        <span>•</span>
+        <span>SEPTEMBER 2026</span>
+      </div>
+      <h1 class="type-heading-lg pt-1 text-[#171717]">
+        Privacy Policy
+      </h1>
+      <p class="type-body-lg max-w-3xl">
+        TrancheLock is an experimental, non-custodial software prototype. This policy honestly explains what data is processed when you view the documentation, inspect live vaults, or interact with our Solana Devnet contracts.
+      </p>
+    </div>
+
+    <!-- Section 1: No Accounts or Personal Profiling -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 1.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">No User Accounts or Personal Data Collection</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        TrancheLock does not require, solicit, or maintain user accounts. We do not collect names, email addresses, physical mailing addresses, phone numbers, passwords, government identifiers, or KYC/AML credentials.
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-2 shadow-whisper">
+        <span class="type-label-sm uppercase tracking-wider text-[#171717]">Key Principles:</span>
+        <ul class="list-disc pl-5 flex flex-col gap-1.5 text-[#4d4d4d]">
+          <li><strong class="text-[#171717] font-medium">No User Profiles:</strong> The frontend does not store account profiles or user identities in any database.</li>
+          <li><strong class="text-[#171717] font-medium">No Commercial Forms:</strong> There are no marketing newsletters, contact capture forms, or subscription gateways.</li>
+          <li><strong class="text-[#171717] font-medium">No Sensitive Data:</strong> We never handle or request private keys, seed phrases, or financial banking credentials.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 2: No Cookies or Tracking Technologies -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 2.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">No Cookies or Behavioral Tracking</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        The TrancheLock website does not use cookies, tracking pixels, or cross-session user profiling technologies.
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-2 shadow-whisper">
+        <ul class="list-disc pl-5 flex flex-col gap-1.5 text-[#4d4d4d]">
+          <li><strong class="text-[#171717] font-medium">Zero HTTP Cookies:</strong> No first-party or third-party cookies are set in your browser upon visiting the website.</li>
+          <li><strong class="text-[#171717] font-medium">No Analytics SDKs:</strong> We do not integrate tracking suites such as Google Analytics, Meta Pixel, PostHog, or Mixpanel.</li>
+          <li><strong class="text-[#171717] font-medium">No Browser Fingerprinting:</strong> The website does not generate device fingerprints or persistent local identifiers.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 3: Public Blockchain Data -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 3.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Public Blockchain Transparency</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        By design, transactions on the Solana blockchain (including Solana Devnet) are public, transparent, and permanent.
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-2 shadow-whisper">
+        <p class="text-[#4d4d4d] leading-relaxed">
+          When an escrow vault is initialized or a tranche is released, transaction parameters are permanently recorded on the public Solana ledger. This includes:
+        </p>
+        <ul class="list-disc pl-5 flex flex-col gap-1.5 text-[#4d4d4d]">
+          <li>Public wallet addresses of the sponsor and agent</li>
+          <li>The verifier oracle public key (<code class="font-mono text-xs bg-[#f2f2f2] px-1 py-0.5 rounded text-[#171717]">HyiP6tqP...</code>)</li>
+          <li>Program Derived Address (PDA) vault keys</li>
+          <li>Committed SHA-256 milestone test suite hashes</li>
+          <li>Ed25519 verification signatures and transaction signatures</li>
+        </ul>
+        <p class="text-[#4d4d4d] pt-1 text-xs">
+          TrancheLock does not and cannot redact, encrypt, or delete public blockchain state. Anyone running a Solana node or inspecting block explorers can view confirmed ledger activity.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 4: Hosting & Infrastructure -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 4.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Hosting & Third-Party Infrastructure</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        Interactions with the website rely on standard distributed internet infrastructure:
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+          <span class="type-label-sm text-[#171717]">Hosting Provider (Vercel)</span>
+          <p class="type-body-sm text-[#4d4d4d]">
+            The static web interface is served via Vercel's global CDN. Vercel processes standard server access logs (such as IP addresses and user agents) strictly for HTTP delivery and DDoS protection under their standard privacy practices.
+          </p>
+        </div>
+        <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+          <span class="type-label-sm text-[#171717]">Solana RPC Nodes</span>
+          <p class="type-body-sm text-[#4d4d4d]">
+            When loading live vault data, read-only queries are routed to public Solana Devnet RPC endpoints (e.g. <code class="font-mono text-xs text-[#171717]">api.devnet.solana.com</code>). RPC nodes process standard JSON-RPC queries.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: External Links & Contact -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 5.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Open-Source Repository & Inquiries</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        TrancheLock is an open-source research prototype. We do not operate commercial customer service hotlines or private sales channels.
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-2 shadow-whisper">
+        <p class="text-[#4d4d4d]">
+          If you voluntarily contribute code, report bugs, or open issues on our public GitHub repository, that information is published openly under GitHub's platform policies.
+        </p>
+        <div class="pt-1 text-xs text-[#8f8f8f]">
+          <span class="font-sans">Public Repository:</span> <a href="https://github.com/Kurosyss/tranchelock" target="_blank" rel="noopener noreferrer" class="font-mono text-[#171717] hover:underline">github.com/Kurosyss/tranchelock</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

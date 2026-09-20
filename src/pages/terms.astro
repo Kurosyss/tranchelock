@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Terms of Use // TRANCHELOCK" description="Terms of Use for TrancheLock. Software terms for our experimental Solana Devnet prototype and milestone escrow demonstration.">
+  <Header />
+
+  <main class="w-full max-w-[1000px] mx-auto px-4 sm:px-6 py-12 flex flex-col gap-10 text-[#4d4d4d]">
+    <!-- Header Block -->
+    <div class="border-b border-[#ebebeb] pb-8 flex flex-col gap-3">
+      <div class="flex items-center gap-2 text-xs font-mono text-[#8f8f8f]">
+        <span class="type-mono-eyebrow text-[#171717]">SOFTWARE TERMS</span>
+        <span>•</span>
+        <span>REVISION 1.0</span>
+        <span>•</span>
+        <span>SEPTEMBER 2026</span>
+      </div>
+      <h1 class="type-heading-lg pt-1 text-[#171717]">
+        Terms of Use
+      </h1>
+      <p class="type-body-lg max-w-3xl">
+        Please read these terms carefully before accessing or using the TrancheLock website, documentation, or smart-contract prototype on Solana Devnet.
+      </p>
+    </div>
+
+    <!-- Section 1: Prototype & Hackathon Nature -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 1.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Prototype Status & Experimental Software</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        TrancheLock is an experimental open-source research and hackathon prototype developed for the Colosseum "Crypto World's Fair" Hackathon. The software, interfaces, verifier services, and smart-contract programs are experimental proofs-of-concept under active development.
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-2.5 shadow-whisper">
+        <span class="type-label-sm uppercase tracking-wider text-[#171717]">Operating Parameters:</span>
+        <ul class="list-disc pl-5 flex flex-col gap-1.5 text-[#4d4d4d]">
+          <li><strong class="text-[#171717] font-medium">Devnet Deployment Only:</strong> TrancheLock is deployed exclusively to the public Solana Devnet (<code class="font-mono text-xs bg-[#f2f2f2] px-1 py-0.5 rounded text-[#171717] break-all">Program ID: 3SBmcsZq4w44Vb33F1qf5qMpsB7E1t2vJbWqPz7febtM</code>). It is not deployed to, nor configured for, Solana Mainnet-Beta.</li>
+          <li><strong class="text-[#171717] font-medium">Test Demonstration Tokens (TLUSD):</strong> All demonstrations, escrow deposits, milestone releases, and balances utilize test Devnet tokens (such as TLUSD). These tokens have zero financial or monetary value and cannot be exchanged, redeemed, or converted into real-world fiat currency, real cryptocurrency, or commercial goods.</li>
+          <li><strong class="text-[#171717] font-medium">No Production Promises:</strong> No production SLA, uptime warranty, or commercial service continuity is promised or implied. Features and smart contracts may be updated, re-deployed, or reset at any time.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 2: Non-Custodial Architecture & Regulatory Status -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 2.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Non-Custodial Architecture & Regulatory Status</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        TrancheLock is a decentralized software program and web interface. The developers, maintainers, and contributors do not act as financial intermediaries, custodians, brokers, or asset managers.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+          <span class="type-label-sm text-[#171717]">No Custody of Funds</span>
+          <p class="type-body-sm text-[#4d4d4d]">
+            Escrow deposits are held strictly in Program Derived Address (PDA) token vaults governed by the on-chain Anchor program rules. TrancheLock maintainers have no ability to access, transfer, or recover assets from vault accounts.
+          </p>
+        </div>
+        <div class="p-4 rounded-[6px] bg-white border border-[#ebebeb] flex flex-col gap-2 shadow-whisper">
+          <span class="type-label-sm text-[#171717]">Not a Financial Service</span>
+          <p class="type-body-sm text-[#4d4d4d]">
+            TrancheLock is not a bank, exchange, custodian, money transmitter, or licensed financial entity. The website does not provide investment, financial, tax, or legal advice.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: User Responsibilities & Acceptable Use -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 3.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">User Responsibilities & Acceptable Use</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        By accessing the website, repository, or contracts, you acknowledge and agree that:
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-2.5 shadow-whisper">
+        <ul class="list-disc pl-5 flex flex-col gap-2 text-[#4d4d4d]">
+          <li><strong class="text-[#171717] font-medium">Self-Sovereign Security:</strong> You are solely responsible for managing your Solana wallets, private keys, transaction signing, and network RPC choices.</li>
+          <li><strong class="text-[#171717] font-medium">Testing & Evaluation Only:</strong> You agree not to deposit real monetary assets, mainnet tokens, or production funds into Devnet prototype contracts.</li>
+          <li><strong class="text-[#171717] font-medium">Compliance with Laws:</strong> You are solely responsible for ensuring your interaction with public blockchain software complies with applicable local laws and regulations.</li>
+          <li><strong class="text-[#171717] font-medium">No Malicious Abuse:</strong> You agree not to execute automated denial-of-service attacks, flood public Solana RPCs, or attempt to compromise other participants' infrastructure.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 4: Open Source & Intellectual Property -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 4.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Open Source License & Code Availability</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        The TrancheLock codebase, smart contracts, test suite, and web frontend are made available as open-source software under the MIT License.
+      </p>
+      <div class="p-5 rounded-[8px] bg-white border border-[#ebebeb] font-sans text-sm flex flex-col gap-2 shadow-whisper">
+        <p class="text-[#4d4d4d] leading-relaxed">
+          Subject to the terms of the MIT License, you are free to inspect, audit, fork, and test the software. However, the TrancheLock name, trademarks, and branding remain the property of the project creators and may not be used to imply endorsement of derivative products.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 5: Disclaimer of Warranties -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 5.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Disclaimer of Warranties ("AS IS")</h2>
+      </div>
+      <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] font-sans text-xs flex flex-col gap-2 text-[#4d4d4d]">
+        <p class="uppercase font-semibold tracking-wide text-[#171717]">
+          TRANCHELOCK IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+        </p>
+        <p class="leading-relaxed">
+          TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE DEVELOPERS AND CONTRIBUTORS DISCLAIM ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SOFTWARE WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, ACCURATE, OR IMMUNE TO ATTACK, FORKS, OR PROTOCOL RE-ORG.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 6: Limitation of Liability -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 6.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Limitation of Liability</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        In no event shall the authors, maintainers, or copyright holders of TrancheLock be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software, the use of the software, Devnet transactions, oracle verification results, or other dealings in the software.
+      </p>
+    </section>
+
+    <!-- Section 7: Modifications to Terms -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 border-b border-[#ebebeb] pb-2 font-mono">
+        <span class="text-xs text-[#8f8f8f]">§ 7.0</span>
+        <h2 class="type-label-sm uppercase tracking-wider text-[#171717]">Modifications to Terms & Software</h2>
+      </div>
+      <p class="type-body-md leading-relaxed">
+        As the prototype evolves, these Terms of Use may be updated to reflect smart contract modifications, new verification pipelines, or protocol changes. Updated terms will be posted on this page with an updated revision date.
+      </p>
+      <div class="pt-2 text-xs text-[#8f8f8f]">
+        <span class="font-sans">Project Repository:</span> <a href="https://github.com/Kurosyss/tranchelock" target="_blank" rel="noopener noreferrer" class="font-mono text-[#171717] hover:underline">github.com/Kurosyss/tranchelock</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
